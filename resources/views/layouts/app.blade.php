@@ -16,8 +16,8 @@
 
     <!-- Custom Theme Style -->
     <link href="/build/css/custom.min.css" rel="stylesheet">
-
-
+    <!-- Font UFP -->
+    <link href="/vendors/font-ufp/styles.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -26,7 +26,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>PrevCrime</span></a>
+                    <a href="/" class="site_title"><div class="icon-ufp"> <span style="vertical-align: middle;">PrevCrime</span></div></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -34,10 +34,10 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="/images/img.jpg" alt="..." class="img-circle profile_img">
+                        <img src="/images/user.png" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>Welcome,</span>
+                        <span>@lang('user.user_welcome'),</span>
                         <h2>{{Auth::User()->name}}</h2>
                     </div>
                 </div>
@@ -101,10 +101,32 @@
                     </div>
 
                     <ul class="nav navbar-nav navbar-right">
+                        <!--
+                        <form action="/language/" method="GET">
+                            <select name="locale" onchange="this.form.submit();">
+                                <option value="en">EN</option>
+                                <option value="pt">PT</option>
+                            </select>
+                        </form>
+                        -->
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false">{{strtoupper (App::getLocale())}}
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                            @foreach (config('languages') as $lang => $language)
+                                @if ($lang != App::getLocale())
+
+                                    <li><a href="{{ route('lang.switch', $lang) }}">{{$language}}</a></li>
+                                @endif
+                            @endforeach
+                            </ul>
+                        </li>
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false">
-                                <img src="/images/img.jpg" alt="">{{Auth::User()->name}}
+                                <img src="/images/user.png" alt="">{{Auth::User()->name}}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">

@@ -2,10 +2,6 @@
 
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('/language_switch/{lang}', function ($lang) {
-    App::setLocale($lang);
-    return redirect()->back();
-});
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'EventController@showMap')->name('home');
@@ -23,3 +19,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
+Route::group(['middleware' => ['web']], function () {
+    Route::get('lang/{lang}', 'LanguageController@switchLang')->name('lang.switch');
+});

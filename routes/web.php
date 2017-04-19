@@ -16,7 +16,7 @@ Route::group(['middleware' => 'auth'], function () {
         return view('pages.users.create');
     })->name('user.create');
     Route::post('/users/create', 'UserController@createtUser')->name('user.set');
-
+    Route::get('/statistics', 'StatController@getEvents')->name('event.stat');
 });
 
 Route::group(['middleware' => ['web']], function () {

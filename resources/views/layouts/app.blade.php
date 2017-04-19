@@ -18,6 +18,8 @@
     <link href="/build/css/custom.min.css" rel="stylesheet">
     <!-- Font UFP -->
     <link href="/vendors/font-ufp/styles.css" rel="stylesheet">
+
+
 </head>
 
 <body class="nav-md">
@@ -55,6 +57,7 @@
                                 <ul class="nav child_menu">
                                     <li><a href="/"> @lang('occurrences.map_title')</a></li>
                                     <li><a href="/events"> @lang('occurrences.occurrence')</a></li>
+                                    <li><a href="/statistics"> @lang('occurrences.events_statistics')</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-users"></i> @lang('user.users_title') <span
@@ -157,10 +160,17 @@
 
 <!-- jQuery -->
 <script src="/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Flot NOT WORKING BECAUSE OF JQUERY
+<script src="/vendors/Flot/jquery.flot.js"></script>
+<script src="/vendors/Flot/jquery.flot.pie.js"></script>
+-->
 <!-- Bootstrap -->
 <script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Custom Theme Scripts -->
 <script src="/build/js/custom.min.js"></script>
 @yield('script')
+<!-- Charts -->
+
+
 </body>
 </html>

@@ -18,7 +18,7 @@ Route::group(['middleware' => 'auth'], function () {
     })->name('user.create');
     Route::post('/users/create', 'UserController@createtUser')->name('user.set');
     Route::get('/remove/user/{id}','WebServiceController@removeUser')->name('user.remove');
-    Route::get('/statistics', 'StatController@getEvents')->name('event.stat');
+    Route::get('/statistics', 'StatController@getStats')->name('event.stat');
 });
 
 Route::group(['middleware' => ['web']], function () {

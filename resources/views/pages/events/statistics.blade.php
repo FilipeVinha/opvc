@@ -1,14 +1,15 @@
 @extends('layouts.app')
 @section('script')
+
     <script type="text/javascript">
         $(function() {
 
             var data = [
                 <?php
-                foreach ($events as $event) {
+                foreach ($stats as $stat) {
                     echo "{";
-                    echo 'label: "'.$event->occurrence->category->category.'",';
-                    echo "data: 5";
+                    echo 'label: "'.$stat->category.'",';
+                    echo "data: ".$stat->counter;
                     echo "},";
                 }
                 ?>
@@ -43,9 +44,7 @@
             </div>
         </div>
     </div>
-
     <div class="clearfix"></div>
-
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
@@ -62,6 +61,11 @@
                                 </div>
                                 <!-- /.panel-heading -->
                                 <div class="panel-body">
+                                    <?php
+                                    foreach ($stats as $stat) {
+                                        echo $stat->category.": ".$stat->counter."</br>";
+                                    }
+                                    ?>
                                     <div class="flot-chart">
                                         <div class="flot-chart-content" id="flot-pie-chart" style="width:400px;height:300px"></div>
                                     </div>

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+
 class UserController extends Controller
 {
     public function confirmtUser(UserConfirmRequest $request)
@@ -29,7 +30,8 @@ class UserController extends Controller
         $user->banned = 0;
         $user->save();
 
-        echo $this->sendResetLinkEmail($request);
+        $this->sendResetLinkEmail($request);
+        return redirect()->back();
     }
 
     /**

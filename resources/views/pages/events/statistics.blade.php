@@ -3,17 +3,6 @@
     <script type="text/javascript">
         $(function() {
 
-
-
-            var data = [
-                { label: "IE",  data: 19.5, color: "#4572A7"},
-                { label: "Safari",  data: 4.5, color: "#80699B"},
-                { label: "Firefox",  data: 36.6, color: "#AA4643"},
-                { label: "Opera",  data: 2.3, color: "#3D96AE"},
-                { label: "Chrome",  data: 36.3, color: "#89A54E"},
-                { label: "Other",  data: 0.8, color: "#3D96AE"}
-            ];
-
             var data = [
                 <?php
                 foreach ($events as $event) {
@@ -24,7 +13,6 @@
                 }
                 ?>
             ];
-
             var plotObj = $.plot($("#flot-pie-chart"), data, {
                 series: {
                     pie: {
@@ -46,22 +34,48 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-<div class="row">
-    <div class="col-lg-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                @lang('statistics.stat_Graph1')
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>@lang('statistics.stat_Graph1')</h3>
             </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                <div class="flot-chart">
-                    <div class="flot-chart-content" id="flot-pie-chart" style="width:400px;height:300px"></div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2> @lang('statistics.stat_Graph1')</h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    @lang('statistics.stat_Graph1')
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <div class="flot-chart">
+                                        <div class="flot-chart-content" id="flot-pie-chart" style="width:400px;height:300px"></div>
+                                    </div>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- /.panel-body -->
         </div>
-        <!-- /.panel -->
     </div>
 </div>
+
 <!-- /.row -->
 @endsection

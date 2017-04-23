@@ -2,7 +2,7 @@
 
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-
+Route::post('appLogin', 'WebServiceController@appLogin')->name('appLogin');
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', 'EventController@showMap')->name('home');

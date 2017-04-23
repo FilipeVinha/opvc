@@ -27,6 +27,8 @@
                         </h2>
                         <div class="clearfix"></div>
                     </div>
+                    <div class="alert alert-success alert-dismissible fade in hidden" role="alert" id="success"></div>
+                    <div class="alert alert-error alert-dismissible fade in hidden" role="alert" id="error"></div>
                     <div class="x_content">
                         <table id="datatable-buttons"
                                class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
@@ -43,7 +45,7 @@
                             </thead>
                             <tbody>
                             @foreach($users as $user)
-                                <tr>
+                                <tr id="{{$user->id}}">
                                     <td><a href="/users/profile/{{$user->id}}">{{$user->name}}</a></td>
                                     <td>{{$user->username}}</td>
                                     <td>{{$user->email}}</td>
@@ -55,7 +57,8 @@
                                             <button class="btn btn-sm btn-default" type="button" data-placement="top"
                                                     data-toggle="tooltip" data-original-title="Edit"><i
                                                         class="fa fa-edit"></i></button>
-                                            <button class="btn btn-sm btn-default" type="button" data-placement="top"
+                                            <button onclick="eraserUser({{$user->id}})" class="btn btn-sm btn-default"
+                                                    type="button" data-placement="top"
                                                     data-toggle="tooltip" data-original-title="Delete"><i
                                                         class="fa fa-eraser"></i></button>
                                         </div>
@@ -72,6 +75,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 @section('script')
     <!-- Datatables -->
@@ -85,6 +89,26 @@
     <script src="/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
     <script src="/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script>
+        function eraserUser(id) {
+            var user = 0;
+            user = {{ Auth::User()->id}};
+            console.log(user);
+            if (id != user) {
+                $.get("/remove/user/" + id, function (data) {
+                    $(".result").html(data);
+                    var row = document.getElementById(id);
+                    row.parentNode.removeChild(row);
+                    $('#success').removeClass('hidden');
+                    $('#success').html('@lang('user.users_deleteWithSuccess')');
+                });
+            }else{
 
+                $('#error').removeClass('hidden');
+                $('#error').html('@lang('user.users_deleteWithError')');
+            }
+
+        }
+    </script>
 
 @endsection

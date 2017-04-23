@@ -75,8 +75,8 @@
             layers: [rasterLayer],
             target: document.getElementById('map'),
             view: new ol.View({
-                center: ol.proj.transform([-8.621812, 41.153592], 'EPSG:4326', 'EPSG:3857'),
-                zoom: 15,
+                center: ol.proj.transform([{{Config::get('config.lat')}}, {{Config::get('config.long')}}], 'EPSG:4326', 'EPSG:3857'),
+                zoom: {{Config::get('config.zoom')}},
                 minZoom: 0
             }),
 

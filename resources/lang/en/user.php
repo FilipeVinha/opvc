@@ -58,4 +58,5 @@ return array(
     'userDetails_createdAt' => 'Created at',
     'user_profile' => 'Profile',
     'user_confirm' => 'Confirm',
+    'user_welcome' => 'Welcome',
 );

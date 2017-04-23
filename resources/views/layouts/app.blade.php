@@ -166,8 +166,9 @@
 -->
 <!-- Bootstrap -->
 <script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Custom Theme Scripts -->
+
 <script src="/build/js/custom.min.js"></script>
+<!-- Custom Theme Scripts -->
 @yield('script')
 <!-- Charts -->
 

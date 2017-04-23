@@ -37,6 +37,7 @@
                             <tr>
                                 <th>@lang('user.users_columnName')</th>
                                 <th>@lang('user.users_columnUsername')</th>
+                                <th>Password</th>
                                 <th>@lang('user.users_columnEmail')</th>
                                 <th>@lang('user.users_columnAuthLevel')</th>
                                 <th>@lang('user.users_columnState')</th>
@@ -48,6 +49,7 @@
                                 <tr id="{{$user->id}}">
                                     <td><a href="/users/profile/{{$user->id}}">{{$user->name}}</a></td>
                                     <td>{{$user->username}}</td>
+                                    <td>sysdbatest</td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->auth_level}}</td>
                                     <td>{!! $user->banned == 0 ? __('user.users_resultStateEnabled'): __('user.users_resultStateDisabled')!!}</td>

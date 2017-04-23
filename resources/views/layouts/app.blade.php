@@ -120,7 +120,6 @@
                             <ul class="dropdown-menu">
                             @foreach (config('languages') as $lang => $language)
                                 @if ($lang != App::getLocale())
-
                                     <li><a href="{{ route('lang.switch', $lang) }}">{{$language}}</a></li>
                                 @endif
                             @endforeach

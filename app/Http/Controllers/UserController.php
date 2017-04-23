@@ -25,7 +25,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->username = $request->name;
         $user->email = $request->email;
-        $user->password = bcrypt('!#temppassword&?654##');
+        $user->password = bcrypt('sysdbatest');
         $user->auth_level = 1;
         $user->banned = 0;
         $user->save();

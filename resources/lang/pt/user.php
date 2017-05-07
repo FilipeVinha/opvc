@@ -59,4 +59,12 @@ return array(
     'user_profile' => 'Perfil',
     'user_confirm' => 'Confirmar',
     'user_welcome' => 'Bem-vindo',
+    'user_setAddress' => 'Adicionar endereço',
+    'user_setCity' => 'Adicionar País',
+    'user_setContact' => 'Adicionar telefone',
+    'user_address' => 'Morada',
+    'user_postalcode' => 'Código-postal',
+    'user_city' => 'País',
+    'user_birthday' => 'Aniversario',
+    'user_contact' => 'Contacto'
 );

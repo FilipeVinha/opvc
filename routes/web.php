@@ -18,11 +18,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/users/create', 'UserController@createtUser')->name('user.set');
     Route::get('/remove/user/{id}', 'WebServiceController@removeUser')->name('user.remove');
     Route::get('/statistics', 'StatController@getStats')->name('event.stat');
+    Route::post('/user/profile', 'UserController@profileUser')->name('user.profile');
+    Route::get('/user/profile', function () {
+        return view('pages.users.profile');});
 });
 
 Route::group(['middleware' => ['web']], function () {
     Route::get('lang/{lang}', 'LanguageController@switchLang')->name('lang.switch');
 });
-Route::group(['middleware' => ['api']], function () {
-//
-});
+
+//    Route::group(['middleware' => ['api']], function () {
+////
+//    });

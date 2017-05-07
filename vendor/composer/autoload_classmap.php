@@ -12,6 +12,8 @@ return array(
     'CreateOccurrencesTable' => $baseDir . '/database/migrations/2016_06_10_175536_create_occurrences_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePhotosTable' => $baseDir . '/database/migrations/2016_06_10_175539_create_photos_table.php',
+    'CreateProfilesTable' => $baseDir . '/database/migrations/2017_05_07_141545_create_profiles_table.php',
+    'CreateReviewsTable' => $baseDir . '/database/migrations/2017_05_06_211308_create_reviews_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'EventsTableSeeder' => $baseDir . '/database/seeds/EventsTableSeeder.php',

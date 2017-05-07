@@ -3,14 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserConfirmRequest;
+use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\profileRequest;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class UserController extends Controller
 {
+
+    public function profileUser(profileRequest $request)
+    {
+        $profile = Profile::find(Auth::user()->id);
+        if ($profile == null) {
+            $profile = new Profile;
+            $profile->user_id = Auth::user()->id;
+        }
+        $profile->address = $request->address;
+        $profile->postalcode = $request->postalcode;
+        $profile->city = $request->city;
+        $profile->contact = $request->contact;
+        $profile->save();
+
+        return json_encode($profile);
+
+    }
+
+
     public function confirmtUser(UserConfirmRequest $request)
     {
 
@@ -88,5 +109,6 @@ class UserController extends Controller
     {
         return Password::broker();
     }
+
 
 }

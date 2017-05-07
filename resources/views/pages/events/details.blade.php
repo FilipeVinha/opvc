@@ -219,9 +219,7 @@
     </div>
 @endsection
 @section('script')
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="/vendors/google-code-prettify/src/prettify.js"></script>
     <script src="/vendors/bootstrap-wysiwyg/src/bootstrap-wysiwyg.js"></script>
 

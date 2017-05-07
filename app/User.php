@@ -14,7 +14,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'auth_level', 'banned', 'username'
+        'name', 'email', 'password', 'auth_level', 'banned', 'username', 'id'
     ];
 
     /**
@@ -25,4 +25,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Review', 'user_id', 'id')->orderBy('created_at', 'desc');
+    }
+
+    public function events()
+    {
+        return $this->hasMany('App\Event', 'user_id', 'id')->orderBy('created_at', 'desc');
+    }
+
+    public function profile()
+    {
+        return $this->hasOne('App\Profile', 'user_id', 'id');
+    }
 }

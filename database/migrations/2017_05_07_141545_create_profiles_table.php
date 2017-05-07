@@ -17,7 +17,7 @@ class CreateProfilesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('user_id')->unsigned();
-            $table->string('photo', 255);
+            $table->string('photo', 255)->nullable();
             $table->string('contact', 15);
             $table->string('address');
             $table->string('postalcode');

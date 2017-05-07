@@ -23,6 +23,7 @@ return array(
     'events_columnOptions' => 'Options',
     'events_optionWatch' => 'Details',
     'events_optionEdit' => 'Edit',
+    'events_newReview' => 'New Review',
     'events_beginDate' => 'Begin Date',
     'events_endDate' => 'End Date',
     'events_submitBtn' => 'Submit',

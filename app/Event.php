@@ -33,6 +33,11 @@ class Event extends Model
 
     public function photos()
     {
-        return $this->hasMany('App\Photo', 'id', 'id');
+        return $this->hasMany('App\Photo', 'event_id', 'id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Review', 'event_id', 'id')->orderBy('created_at', 'desc');
     }
 }

@@ -14,6 +14,11 @@ class WebServiceController extends Controller
         DB::table('users')->where('id', $id)->delete();
     }
 
+    public function appToken()
+    {
+        return csrf_token();
+    }
+
     public function appLogin(Request $request)
     {
         $user = User::where('username', $request->username)->first();

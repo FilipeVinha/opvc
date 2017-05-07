@@ -23,6 +23,7 @@ return array(
     'events_columnOptions' => 'Opções',
     'events_optionWatch' => 'Detalhes',
     'events_optionEdit' => 'Editar',
+    'events_newReview' => 'Adicionar observação',
     'events_beginDate' => 'Data Início',
     'events_endDate' => 'Data Fim',
     'events_submitBtn' => 'Submeter',

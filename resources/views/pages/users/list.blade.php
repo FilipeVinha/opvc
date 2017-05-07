@@ -101,11 +101,12 @@
                     $(".result").html(data);
                     var row = document.getElementById(id);
                     row.parentNode.removeChild(row);
+                    $('#error').addClass('hidden');
                     $('#success').removeClass('hidden');
                     $('#success').html('@lang('user.users_deleteWithSuccess')');
                 });
-            }else{
-
+            } else {
+                $('#success').addClass('hidden');
                 $('#error').removeClass('hidden');
                 $('#error').html('@lang('user.users_deleteWithError')');
             }

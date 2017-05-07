@@ -52,6 +52,8 @@ div[data-role="editor-toolbar"] {
 }
 .btn-toolbar {
 	padding: 10px 0px 10px 0px;
+	background-color: #f7f7f7;
+	border-radius: 4px;
 }
 
 [contentEditable=true]:empty:not(:focus):before {

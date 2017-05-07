@@ -1,555 +1,345 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
+@section('css')
+    <link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="/slick/slick-theme.css"/>
+    <link href="/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <link href="\vendors\bootstrap-wysiwyg\css\style.css" rel="stylesheet">
 
-    <title>Gentelella Alela! | </title>
-
-    <!-- Bootstrap -->
-    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- iCheck -->
-    <link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-    <script src="/ol/ol.js"></script>
-    <!-- Custom Theme Style -->
-    <link href="/build/css/custom.min.css" rel="stylesheet">
-</head>
-
-<body class="nav-md">
-<div class="container body">
-    <div class="main_container">
-        <div class="col-md-3 left_col">
-            <div class="left_col scroll-view">
-                <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+@endsection
+@section('content')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>@lang('occurrences.details_title')</h3>
                 </div>
-
-                <div class="clearfix"></div>
-
-                <!-- menu profile quick info -->
-                <div class="profile clearfix">
-                    <div class="profile_pic">
-                        <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-                    </div>
-                    <div class="profile_info">
-                        <span>Welcome,</span>
-                        <h2>John Doe</h2>
-                    </div>
-                </div>
-                <!-- /menu profile quick info -->
-
-                <br/>
-
-                <!-- sidebar menu -->
-                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                    <div class="menu_section">
-                        <h3>General</h3>
-                        <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="index.html">Dashboard</a></li>
-                                    <li><a href="index2.html">Dashboard2</a></li>
-                                    <li><a href="index3.html">Dashboard3</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="form.html">General Form</a></li>
-                                    <li><a href="form_advanced.html">Advanced Components</a></li>
-                                    <li><a href="form_validation.html">Form Validation</a></li>
-                                    <li><a href="form_wizards.html">Form Wizard</a></li>
-                                    <li><a href="form_upload.html">Form Upload</a></li>
-                                    <li><a href="form_buttons.html">Form Buttons</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-desktop"></i> UI Elements <span
-                                            class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="general_elements.html">General Elements</a></li>
-                                    <li><a href="media_gallery.html">Media Gallery</a></li>
-                                    <li><a href="typography.html">Typography</a></li>
-                                    <li><a href="icons.html">Icons</a></li>
-                                    <li><a href="glyphicons.html">Glyphicons</a></li>
-                                    <li><a href="widgets.html">Widgets</a></li>
-                                    <li><a href="invoice.html">Invoice</a></li>
-                                    <li><a href="inbox.html">Inbox</a></li>
-                                    <li><a href="calendar.html">Calendar</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="tables.html">Tables</a></li>
-                                    <li><a href="tables_dynamic.html">Table Dynamic</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span
-                                            class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="chartjs.html">Chart JS</a></li>
-                                    <li><a href="chartjs2.html">Chart JS2</a></li>
-                                    <li><a href="morisjs.html">Moris JS</a></li>
-                                    <li><a href="echarts.html">ECharts</a></li>
-                                    <li><a href="other_charts.html">Other Charts</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-clone"></i>Layouts <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="fixed_sidebar.html">Fixed Sidebar</a></li>
-                                    <li><a href="fixed_footer.html">Fixed Footer</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="menu_section">
-                        <h3>Live On</h3>
-                        <ul class="nav side-menu">
-                            <li><a><i class="fa fa-bug"></i> Additional Pages <span
-                                            class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="e_commerce.html">E-commerce</a></li>
-                                    <li><a href="projects.html">Projects</a></li>
-                                    <li><a href="project_detail.html">Project Detail</a></li>
-                                    <li><a href="contacts.html">Contacts</a></li>
-                                    <li><a href="profile.html">Profile</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-windows"></i> Extras <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="page_403.html">403 Error</a></li>
-                                    <li><a href="page_404.html">404 Error</a></li>
-                                    <li><a href="page_500.html">500 Error</a></li>
-                                    <li><a href="plain_page.html">Plain Page</a></li>
-                                    <li><a href="login.html">Login Page</a></li>
-                                    <li><a href="pricing_tables.html">Pricing Tables</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-sitemap"></i> Multilevel Menu <span
-                                            class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="#level1_1">Level One</a>
-                                    <li><a>Level One<span class="fa fa-chevron-down"></span></a>
-                                        <ul class="nav child_menu">
-                                            <li class="sub_menu"><a href="level2.html">Level Two</a>
-                                            </li>
-                                            <li><a href="#level2_1">Level Two</a>
-                                            </li>
-                                            <li><a href="#level2_2">Level Two</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#level1_2">Level One</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span
-                                            class="label label-success pull-right">Coming Soon</span></a></li>
-                        </ul>
-                    </div>
-
-                </div>
-                <!-- /sidebar menu -->
-
-                <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                </div>
-                <!-- /menu footer buttons -->
             </div>
-        </div>
 
-        <!-- top navigation -->
-        <div class="top_nav">
-            <div class="nav_menu">
-                <nav>
-                    <div class="nav toggle">
-                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                    </div>
+            <div class="clearfix"></div>
 
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="">
-                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                               aria-expanded="false">
-                                <img src="images/img.jpg" alt="">John Doe
-                                <span class=" fa fa-angle-down"></span>
-                            </a>
-                            <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="javascript:;"> Profile</a></li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <span class="badge bg-red pull-right">50%</span>
-                                        <span>Settings</span>
-                                    </a>
-                                </li>
-                                <li><a href="javascript:;">Help</a></li>
-                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                            </ul>
-                        </li>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>{{$event->address}}</h2>
 
-                        <li role="presentation" class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
-                               aria-expanded="false">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-green">6</span>
-                            </a>
-                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
-                                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
-                                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
-                                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image"/></span>
-                                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="text-center">
-                                        <a>
-                                            <strong>See All Alerts</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="x_content">
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <div class="row">
+                                    <div class="content">
+                                        <section class="panel">
+                                            <div class="x_title">
+                                                <h2>@lang('occurrences.details_containerPhotos')
+                                                </h2>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="slider-for photos">
+                                                    @foreach($event->photos as $photo)
+                                                        <div><img src="/photos/{{$photo->photo}}"></div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </section>
                                     </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-        <!-- /top navigation -->
-
-        <!-- page content -->
-        <div class="right_col" role="main">
-            <div class="">
-                <div class="page-title">
-                    <div class="title_left">
-                        <h3>@lang('occurrences.details_title')</h3>
-                    </div>
-                </div>
-
-                <div class="clearfix"></div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="x_panel">
-                            <div class="x_title">
-                                <h2>{{$event->address}}</h2>
-
-                                <div class="clearfix"></div>
-                            </div>
-
-                            <div class="x_content">
-
-                                <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <div id="map" class="map">
-                                        <div id="popup"></div>
-                                    </div>
-
-                                    <br/>
-
-                                    <div id="mainb" style="height:350px;"></div>
-
-                                    <div>
-
-                                        <h4>Recent Activity</h4>
-
-                                        <!-- end of user messages -->
-                                        <ul class="messages">
-                                            <li>
-                                                <img src="/images/img.jpg" class="avatar" alt="Avatar">
-                                                <div class="message_date">
-                                                    <h3 class="date text-info">24</h3>
-                                                    <p class="month">May</p>
-                                                </div>
-                                                <div class="message_wrapper">
-                                                    <h4 class="heading">Desmond Davison</h4>
-                                                    <blockquote class="message">Raw denim you probably haven't heard of
-                                                        them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher
-                                                        retro keffiyeh dreamcatcher synth.
-                                                    </blockquote>
-                                                    <br/>
-                                                    <p class="url">
-                                                        <span class="fs1 text-info" aria-hidden="true"
-                                                              data-icon=""></span>
-                                                        <a href="#"><i class="fa fa-paperclip"></i> User Acceptance
-                                                            Test.doc </a>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <img src="images/img.jpg" class="avatar" alt="Avatar">
-                                                <div class="message_date">
-                                                    <h3 class="date text-error">21</h3>
-                                                    <p class="month">May</p>
-                                                </div>
-                                                <div class="message_wrapper">
-                                                    <h4 class="heading">Brian Michaels</h4>
-                                                    <blockquote class="message">Raw denim you probably haven't heard of
-                                                        them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher
-                                                        retro keffiyeh dreamcatcher synth.
-                                                    </blockquote>
-                                                    <br/>
-                                                    <p class="url">
-                                                        <span class="fs1" aria-hidden="true" data-icon=""></span>
-                                                        <a href="#" data-original-title="">Download</a>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <img src="images/img.jpg" class="avatar" alt="Avatar">
-                                                <div class="message_date">
-                                                    <h3 class="date text-info">24</h3>
-                                                    <p class="month">May</p>
-                                                </div>
-                                                <div class="message_wrapper">
-                                                    <h4 class="heading">Desmond Davison</h4>
-                                                    <blockquote class="message">Raw denim you probably haven't heard of
-                                                        them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher
-                                                        retro keffiyeh dreamcatcher synth.
-                                                    </blockquote>
-                                                    <br/>
-                                                    <p class="url">
-                                                        <span class="fs1 text-info" aria-hidden="true"
-                                                              data-icon=""></span>
-                                                        <a href="#"><i class="fa fa-paperclip"></i> User Acceptance
-                                                            Test.doc </a>
-                                                    </p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                        <!-- end of user messages -->
-
-
-                                    </div>
-
-
                                 </div>
 
-                                <!-- start project-detail sidebar -->
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-
-                                    <section class="panel">
-
-                                        <div class="x_title">
-                                            <h2>@lang('occurrences.details_description')
-                                            </h2>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="panel-body">
-                                            <div class="project_detail">
-
-                                                <p class="title">@lang('occurrences.details_address')</p>
-                                                <p>{{$event->address}}</p>
-                                                <p class="title">@lang('occurrences.details_category')</p>
-                                                <p>{{$event->occurrence->category->category}}</p>
-                                                <p class="title">@lang('occurrences.details_subCategory')</p>
-                                                <p>{{$event->occurrence->occurrence}}</p>
-                                                <p class="title">@lang('occurrences.details_title')</p>
-                                                <p>{{$event->lat}}, {{$event->lng}}</p>
-                                                <p class="title">@lang('occurrences.details_registerBy')</p>
-                                                <p>{{$event->user->name}}</p>
-                                                <p class="title">@lang('occurrences.details_createdAt')</p>
-                                                <p>{{$event->created_at}}</p>
+                                <div class="row">
+                                    <div class="content">
+                                        <section class="panel">
+                                            <div class="x_title">
+                                                <h2>@lang('occurrences.details_containerObs')
+                                                </h2>
+                                                <div class="clearfix"></div>
                                             </div>
+                                            <div class="panel-body">
+                                                <div id="alerts"></div>
+                                                {{--AQUI--}}
+                                                <div class="btn-toolbar" data-role="editor-toolbar"
+                                                     data-target="#editor">
+                                                    <div class="btn-group">
+                                                        <a class="btn btn-default dropdown-toggle"
+                                                           data-toggle="dropdown" title="Font Size"><i
+                                                                    class="fa fa-text-height"></i>&nbsp;<b
+                                                                    class="caret"></b></a>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a data-edit="fontSize 5" class="fs-Five">Huge</a></li>
+                                                            <li><a data-edit="fontSize 3" class="fs-Three">Normal</a>
+                                                            </li>
+                                                            <li><a data-edit="fontSize 1" class="fs-One">Small</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <a class="btn btn-default" data-edit="bold"
+                                                           title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
+                                                        <a class="btn btn-default" data-edit="italic"
+                                                           title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+                                                        <a class="btn btn-default" data-edit="strikethrough"
+                                                           title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+                                                        <a class="btn btn-default" data-edit="underline"
+                                                           title="Underline (Ctrl/Cmd+U)"><i
+                                                                    class="fa fa-underline"></i></a>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <a class="btn btn-default" data-edit="insertunorderedlist"
+                                                           title="Bullet list"><i class="fa fa-list-ul"></i></a>
+                                                        <a class="btn btn-default" data-edit="insertorderedlist"
+                                                           title="Number list"><i class="fa fa-list-ol"></i></a>
+                                                        <a class="btn btn-default" data-edit="outdent"
+                                                           title="Reduce indent (Shift+Tab)"><i
+                                                                    class="fa fa-outdent"></i></a>
+                                                        <a class="btn btn-default" data-edit="indent"
+                                                           title="Indent (Tab)"><i class="fa fa-indent"></i></a>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <a class="btn btn-default" data-edit="justifyleft"
+                                                           title="Align Left (Ctrl/Cmd+L)"><i
+                                                                    class="fa fa-align-left"></i></a>
+                                                        <a class="btn btn-default" data-edit="justifycenter"
+                                                           title="Center (Ctrl/Cmd+E)"><i
+                                                                    class="fa fa-align-center"></i></a>
+                                                        <a class="btn btn-default" data-edit="justifyright"
+                                                           title="Align Right (Ctrl/Cmd+R)"><i
+                                                                    class="fa fa-align-right"></i></a>
+                                                        <a class="btn btn-default" data-edit="justifyfull"
+                                                           title="Justify (Ctrl/Cmd+J)"><i
+                                                                    class="fa fa-align-justify"></i></a>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <a class="btn btn-default dropdown-toggle"
+                                                           data-toggle="dropdown" title="Hyperlink"><i
+                                                                    class="fa fa-link"></i></a>
+                                                        <div class="dropdown-menu input-append">
+                                                            <input placeholder="URL" type="text"
+                                                                   data-edit="createLink"/>
+                                                            <button class="btn" type="button">Add</button>
+                                                        </div>
+                                                    </div>
 
-                                            <br/>
-                                            <h5>@lang('occurrences.details_map')</h5>
-                                            <div id="map" class="map">
-                                                <div id="popup"></div>
+                                                    <div class="btn-group">
+                                                        <a class="btn btn-default" data-edit="undo"
+                                                           title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
+                                                        <a class="btn btn-default" data-edit="redo"
+                                                           title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+                                                        <a class="btn btn-default" data-edit="html"
+                                                           title="Clear Formatting"><i
+                                                                    class='glyphicon glyphicon-pencil'></i></a>
+                                                    </div>
+                                                    <div class="btn-group alignright send">
+                                                        <a class="btn"
+                                                           onclick="sendReview()"
+                                                           title="@lang('occurrences.events_newReview')"><i
+                                                                    class="fa fa-send"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div id="editor" class="lead "
+                                                     data-placeholder="This is a basic example with a simple toolbar."></div>
+                                                {{--AQUI                                        --}}
+
+                                                <div class="clearfix"></div>
+                                                <ul class="messages" id="messages">
+                                                    @foreach($event->reviews as $review)
+                                                        <li>
+                                                            <img src="/images/user.png" class="avatar" alt="Avatar">
+                                                            <div class="message_date">
+                                                                <h3 class="date text-info">{{date("d", strtotime($review->created_at))}}</h3>
+                                                                <p class="month">{{date("M", strtotime($review->created_at))}}</p>
+                                                            </div>
+                                                            <div class="message_wrapper">
+                                                                <h4 class="heading">{{$review->user->name}}</h4>
+                                                                <blockquote class="message">{!! $review->review !!}
+                                                                </blockquote>
+                                                                <br>
+                                                            </div>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
                                             </div>
-                                            <br/>
-
-                                            <div class="text-center mtop20">
-                                                <a href="#" class="btn btn-sm btn-primary">Add files</a>
-                                                <a href="#" class="btn btn-sm btn-warning">Report contact</a>
-                                            </div>
-                                        </div>
-
-                                    </section>
-
+                                        </section>
+                                    </div>
                                 </div>
-                                <!-- end project-detail sidebar -->
+
 
                             </div>
+
+                            <!-- start project-detail sidebar -->
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+
+                                <section class="panel">
+
+                                    <div class="x_title">
+                                        <h2>@lang('occurrences.details_description')
+                                        </h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="project_detail">
+
+                                            <p class="title">@lang('occurrences.details_address')</p>
+                                            <p>{{$event->address}}</p>
+                                            <p class="title">@lang('occurrences.details_category')</p>
+                                            <p>{{$event->occurrence->category->category}}</p>
+                                            <p class="title">@lang('occurrences.details_subCategory')</p>
+                                            <p>{{$event->occurrence->occurrence}}</p>
+                                            <p class="title">@lang('occurrences.details_title')</p>
+                                            <p>{{$event->lat}}, {{$event->lng}}</p>
+                                            <p class="title">@lang('occurrences.details_registerBy')</p>
+                                            <p>{{$event->user->name}}</p>
+                                            <p class="title">@lang('occurrences.details_createdAt')</p>
+                                            <p>{{$event->created_at}}</p>
+                                        </div>
+
+                                        <br/>
+                                        <h5 class="title">@lang('occurrences.details_map')</h5>
+                                        <div id="mapdiv" class="mapdiv" style="height: 450px">
+                                            {{--<div id="popup"></div>--}}
+                                        </div>
+                                        <br/>
+
+                                        {{--<div class="text-center mtop20">--}}
+                                        {{--<a href="#" class="btn btn-sm btn-primary">Add files</a>--}}
+                                        {{--<a href="#" class="btn btn-sm btn-warning">Report contact</a>--}}
+                                        {{--</div>--}}
+                                    </div>
+
+                                </section>
+
+                            </div>
+                            <!-- end project-detail sidebar -->
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /page content -->
-
-        <!-- footer content -->
-        <footer>
-            <div class="pull-right">
-                Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-            </div>
-            <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
     </div>
-</div>
+@endsection
+@section('script')
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="/vendors/google-code-prettify/src/prettify.js"></script>
+    <script src="/vendors/bootstrap-wysiwyg/src/bootstrap-wysiwyg.js"></script>
 
-<!-- jQuery -->
-<script src="/vendors/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- FastClick -->
-<script src="/vendors/fastclick/lib/fastclick.js"></script>
-<!-- NProgress -->
-<script src="/vendors/nprogress/nprogress.js"></script>
-<!-- ECharts -->
-<script src="/vendors/echarts/dist/echarts.min.js"></script>
+    <script src="/osm/OpenLayers.js"></script>
+    <script>
+        map = new OpenLayers.Map("mapdiv");
+        map.addLayer(new OpenLayers.Layer.OSM());
 
-<!-- Custom Theme Scripts -->
-<script src="/build/js/custom.min.js"></script>
-<script>
-    var vectorSource = new ol.source.Vector({});
-    var iconFeature = new ol.Feature({
-        geometry: new ol.geom.Point(ol.proj.transform([{{$event->lng}}, {{$event->lat}}], 'EPSG:4326',
-            'EPSG:3857')),
-        name: "{address}",
-        population: 4000,
-        rainfall: 500
-    });
-    var iconStyle = new ol.style.Style({
-        image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-            anchor: [0.5, 0.75],
-            scale: 1,
-            opacity: 0.75,
-            src: '/ol/icons/{{$event->occurrence->category->icon}}.png'
-        }))
-    });
-    iconFeature.setStyle(iconStyle);
-    vectorSource.addFeature(iconFeature);
+        epsg4326 = new OpenLayers.Projection("EPSG:4326"); //WGS 1984 projection
+        projectTo = map.getProjectionObject(); //The map projection (Spherical Mercator)
 
-    var vectorLayer = new ol.layer.Vector({
-        source: vectorSource,
-        style: iconStyle
-    });
+        var lonLat = new OpenLayers.LonLat({{$event->lng}}, {{$event->lat}}).transform(epsg4326, projectTo);
 
-    var rasterLayer = new ol.layer.Tile({
-        source: new ol.source.TileJSON({
-            url: 'http://api.tiles.mapbox.com/v3/mapbox.geography-class.json'
-        })
-    });
 
-    var map = new ol.Map({
-        layers: [rasterLayer, vectorLayer],
-        target: document.getElementById('map'),
-        view: new ol.View({
-            center: ol.proj.transform([{{$event->lng}}, {{$event->lat}}], 'EPSG:4326', 'EPSG:3857'),
-            zoom: 14,
-            minZoom: 13
-        }),
+        var zoom = 14;
+        map.setCenter(lonLat, zoom);
 
-        layers: [
-            new ol.layer.Tile({
-                source: new ol.source.BingMaps({
-                    imagerySet: 'Road',
-                    key: 'AkGbxXx6tDWf1swIhPJyoAVp06H0s0gDTYslNWWHZ6RoPqMpB9ld5FY1WutX8UoF'
-                })
-            }),
-            vectorLayer
-        ]
-    });
-    var element = document.getElementById('popup');
+        var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
+        //init array
+        // Define markers as "features" of the vector layer:
+        var feature = new OpenLayers.Feature.Vector(
+            new OpenLayers.Geometry.Point({{$event->lng}}, {{$event->lat}}).transform(epsg4326, projectTo),
+            {description: "{{$event->occurrence->occurrence}}" + "</br><a href='/events/details/{{$event->id}}'>Ver detalhes</a>",},
+            {
+                externalGraphic: '/ol/icons/{{$event->occurrence->category->icon}}.png',
+                graphicHeight: 35,
+                graphicWidth: 35,
+                graphicXOffset: -0,
+                graphicYOffset: -10
+            }
+        );
+        vectorLayer.addFeatures(feature);
+        // end array
+        map.addLayer(vectorLayer);
 
-    var popup = new ol.Overlay({
-        element: element,
-        positioning: 'bottom-center',
-        stopEvent: false
-    });
-    map.addOverlay(popup);
 
-    // display popup on click
-    map.on('click', function (evt) {
-        var feature = map.forEachFeatureAtPixel(evt.pixel,
-            function (feature, layer) {
-                return feature;
-            });
-        if (feature) {
-            var geometry = feature.getGeometry();
-            var coord = geometry.getCoordinates();
-            popup.setPosition(coord);
-            $(element).popover({
-                'placement': 'top',
-                'html': true,
-                'content': feature.get('name')
-            });
-            $(element).popover('show');//nem sei se isto dos popups tem a ver com OL3
-        } else {
-            $(element).popover('destroy');
+        //Add a selector control to the vectorLayer with popup functions
+        var controls = {
+            selector: new OpenLayers.Control.SelectFeature(vectorLayer, {
+                onSelect: createPopup,
+                onUnselect: destroyPopup
+            })
+        };
+
+        function createPopup(feature) {
+            feature.popup = new OpenLayers.Popup.FramedCloud("pop",
+                feature.geometry.getBounds().getCenterLonLat(),
+                null,
+                '<div class="markerContent">' + feature.attributes.description + '</div>',
+                null,
+                true,
+                function () {
+                    controls['selector'].unselectAll();
+                }
+            );
+            //feature.popup.closeOnMove = true;
+            map.addPopup(feature.popup);
         }
-    });
 
-    // change mouse cursor when over marker
-    $(map.getViewport()).on('mousemove', function (e) {
-        var pixel = map.getEventPixel(e.originalEvent);
-        var hit = map.forEachFeatureAtPixel(pixel, function (feature, layer) {
-            return true;
+        function destroyPopup(feature) {
+            feature.popup.destroy();
+            feature.popup = null;
+        }
+
+        map.addControl(controls['selector']);
+        controls['selector'].activate();
+
+    </script>
+    <script type="text/javascript" src="/slick/slick.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.slider-for').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: true,
+                fade: true,
+                dots: true
+            });
+
         });
-        if (hit) {
-            map.getTarget().style.cursor = 'pointer';
-        } else {
-            map.getTarget().style.cursor = '';
+
+    </script>
+
+    <script>
+        function sendReview() {
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var review = $('#editor').cleanHtml();
+            var user = {{Auth::User()->id}};
+            var event = {{$event->id}};
+
+
+            $.ajax({
+                type: "POST",
+                url: '/events/setReview',
+                data: {'review': review, 'user': user, 'event': event},
+                success: function (result) {
+                    var obj = jQuery.parseJSON(result);
+                    $("#messages").prepend(obj.reviews);
+                },
+                error: function () {
+                    alert('failure');
+                }
+            });
         }
-    });
-</script>
-</body>
-</html>
+    </script>
+
+    <script type='text/javascript'>
+        $('#editor').wysiwyg();
+
+        $(".dropdown-menu > input").click(function (e) {
+            e.stopPropagation();
+        });
+    </script>
+
+@endsection

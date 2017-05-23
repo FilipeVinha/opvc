@@ -10,12 +10,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="right_col" role="main">
         <div class="">
-            <div class="page-title">
-                <div class="title_left">
-                    <h3>@lang('occurrences.details_title')</h3>
-                </div>
-            </div>
-
             <div class="clearfix"></div>
 
             <div class="row">
@@ -129,16 +123,12 @@
                                                            title="Clear Formatting"><i
                                                                     class='glyphicon glyphicon-pencil'></i></a>
                                                     </div>
-                                                    <div class="btn-group alignright send">
-                                                        <a class="btn"
-                                                           onclick="sendReview()"
-                                                           title="@lang('occurrences.events_newReview')"><i
-                                                                    class="fa fa-send"></i></a>
-                                                    </div>
                                                 </div>
-                                                <div id="editor" class="lead "
-                                                     data-placeholder="This is a basic example with a simple toolbar."></div>
-                                                {{--AQUI                                        --}}
+                                                <div id="editor" class="lead "></div>
+                                                <button type="button" class="btn btn-warning"
+                                                        onclick="cancelReview()">@lang('occurrences.events_cleanReview')</button>
+                                                <button type="button" onclick="sendReview()"
+                                                        class="btn btn-success">@lang('occurrences.events_newReview')</button>
 
                                                 <div class="clearfix"></div>
                                                 <ul class="messages" id="messages">
@@ -324,6 +314,7 @@
                 success: function (result) {
                     var obj = jQuery.parseJSON(result);
                     $("#messages").prepend(obj.reviews);
+                    document.getElementById("editor").innerHTML = "";
                 },
                 error: function () {
                     alert('failure');
@@ -331,6 +322,8 @@
             });
         }
     </script>
+
+
 
     <script type='text/javascript'>
         $('#editor').wysiwyg();
@@ -340,4 +333,9 @@
         });
     </script>
 
+    <script>
+        function cancelReview() {
+            document.getElementById("editor").innerHTML = "";
+        }
+    </script>
 @endsection

@@ -45,4 +45,5 @@ return array(
     'details_map' => 'Mapa',
     'details_graphicOfStatistic' => 'Gráfico da Estatística',
     'details_description' => 'Descrição',
+    'events_cleanReview' => 'Cancelar',
 );

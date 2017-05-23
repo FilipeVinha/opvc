@@ -6,16 +6,7 @@
 @section('content')
     <!-- page content -->
     <div class="right_col" role="main">
-        <div class="">
-            <div class="page-title">
-                <div class="title_left">
-                    <h3>@lang('occurrences.events_title')
 
-
-                    </h3>
-                </div>
-            </div>
-        </div>
 
         <div class="clearfix"></div>
 
@@ -28,7 +19,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <table id="datatable-buttons"
+                        <table id="listEvents"
                                class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
                                width="100%">
                             <thead>
@@ -76,5 +67,14 @@
     <script src="/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
 
-
+    <script>
+        $(document).ready(function () {
+            $('#listEvents').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+    </script>
 @endsection

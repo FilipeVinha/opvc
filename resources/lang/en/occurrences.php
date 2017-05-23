@@ -37,7 +37,7 @@ return array(
     'details_coordinates' => 'Coordinates (Lat., Long.)',
     'details_category' => 'Category',
     'details_subCategory' => 'Sub Category',
-    'details_registerBy' => 'Register By',
+    'details_registerBy' => 'Registered By',
     'details_createdAt' => 'Created At',
     'details_containerObs' => 'Observations',
     'details_submitBtn' => 'Submit',
@@ -45,4 +45,5 @@ return array(
     'details_map' => 'Map',
     'details_graphicOfStatistic' => 'Graphic of a Statistic',
     'details_description' => 'Description',
+    'events_cleanReview' => 'Cancel',
 );

@@ -45,4 +45,5 @@ return array(
     'details_map' => 'Carte',
     'details_graphicOfStatistic' => 'Graphique d\'une statistique',
     'details_description' => 'Description',
+    'events_cleanReview' => 'Cancel',
 );

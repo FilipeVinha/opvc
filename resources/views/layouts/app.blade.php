@@ -50,7 +50,6 @@
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
-                        <h3>General</h3>
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-bug"></i> @lang('occurrences.events') <span
                                             class="fa fa-chevron-down"></span></a>
@@ -132,7 +131,7 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="/user/profile"> @lang('user.user_profile')</a></li>
+                                <li><a href="/user/profile/{{Auth::user()->id}}"> @lang('user.user_profile')</a></li>
                                 <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                             </ul>
                         </li>

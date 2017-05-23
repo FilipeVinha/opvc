@@ -5,16 +5,11 @@
     <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 @endsection
 @section('content')
-    @php
-        $user =  Auth::user();
-    @endphp
+    {{--@php--}}
+    {{--$user =  Auth::user();--}}
+    {{--@endphp--}}
     <div class="right_col" role="main">
         <div class="">
-            <div class="page-title">
-                <div class="title_left">
-                    <h3>@lang('user.user_profile')</h3>
-                </div>
-            </div>
 
             <div class="clearfix"></div>
 
@@ -55,11 +50,12 @@
                                     </li>
                                 </ul>
                                 <div class="x_content">
-                                    <button type="button" class="btn btn-success" data-toggle="modal"
-                                            data-target=".editProfile"><i class="fa fa-edit m-right-xs"></i>Edit
-                                        Profile
-                                    </button>
-
+                                    @if(Auth::user()->id == $user->id)
+                                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                                data-target=".editProfile"><i class="fa fa-edit m-right-xs"></i>Edit
+                                            Profile
+                                        </button>
+                                    @endif
                                     <div class="modal fade editProfile" tabindex="-1" role="dialog"
                                          aria-hidden="true" style="display: none;">
                                         <div class="modal-dialog modal-lg">
@@ -127,6 +123,18 @@
                                                                        value="{!! isset($user->profile->postalcode) ? $user->profile->contact: '' !!}">
                                                             </div>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                                   for="lang">@lang('user.user_langt')<span
+                                                                        class="required">*</span>
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                <input type="text" id="lang" name="lang"
+                                                                       required="required"
+                                                                       class="form-control col-md-7 col-xs-12"
+                                                                       value="{!! isset($user->profile->lang) ? $user->profile->lang: '' !!}">
+                                                            </div>
+                                                        </div>
 
 
                                                     </div>
@@ -145,82 +153,6 @@
                                     </div>
                                 </div>
 
-                            </div>
-                            <div class="col-md-9 col-sm-9 col-xs-12">
-                                <section class="panel">
-                                    <div class="x_title">
-                                        <h2>@lang('occurrences.occurrence')
-                                        </h2>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="clearfix"></div>
-                                        <table id="datatable-buttons"
-                                               class="table table-striped table-bordered dt-responsive nowrap"
-                                               cellspacing="0"
-                                               width="100%">
-                                            <thead>
-                                            <tr>
-
-                                                <th>@lang('occurrences.events_columnAddress')</th>
-                                                <th>@lang('occurrences.events_columnCategory')</th>
-                                                <th>@lang('occurrences.events_columnOccurrence')</th>
-                                                <th hidden>@lang('occurrences.events_columnLocal')</th>
-                                                <th>@lang('occurrences.events_columnDateTime')</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach($user->events as $event)
-                                                <tr>
-                                                    <td><a href="/events/details/{{$event->id}}">{{$event->address}}</a>
-                                                    </td>
-                                                    <td>{{$event->occurrence->category->category}}</td>
-                                                    <td>{{$event->occurrence->occurrence}}</td>
-                                                    <td hidden>{{$event->local->local}}</td>
-                                                    <td>{{date("d/M/Y", strtotime($event->created_at))}}</td>
-                                                </tr>
-                                            @endforeach
-
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </section>
-
-
-                                <section class="panel">
-                                    <div class="x_title">
-                                        <h2>@lang('occurrences.details_containerObs')
-                                        </h2>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="clearfix"></div>
-                                        <ul class="messages" id="messages">
-                                            @foreach($user->reviews as $review)
-                                                <li>
-                                                    <div class="message_date">
-                                                        <h3 class="date text-info">{{date("d", strtotime($review->created_at))}}</h3>
-                                                        <p class="month">{{date("M", strtotime($review->created_at))}}</p>
-                                                    </div>
-                                                    <div class="message_wrapper" style="margin-left: 0 !important;">
-                                                        <h4 class="heading"><a
-                                                                    href="/events/details/{{$review->event->id}}">{{$review->event->address}}</a>
-                                                        </h4>
-                                                        <blockquote class="message">{!! $review->review !!}
-                                                        </blockquote>
-                                                        <br>
-                                                    </div>
-                                                    <p class="url">
-                                                        <span class="fs1 text-info" aria-hidden="true"></span>
-                                                        <a href="#"><i
-                                                                    class="fa fa-bug"></i> {{$review->event->occurrence->occurrence }}
-                                                        </a>
-                                                    </p>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                </section>
                             </div>
                         </div>
                     </div>

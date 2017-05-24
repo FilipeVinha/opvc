@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use SebastianBergmann\Environment\Console;
 
 class APIController extends Controller
 {
     public function appLogin(Request $request)
     {
-
-        return 'hello';
-//        $user = User::where('username', $request->username)->first();
-//        if ($user != null) {
-//            $password = bcrypt($request->password);
-//            if ($user->password == $password)
-//                return csrf_token();
-//        }
-//        return false();
+        $user = User::where('email', $request->input('email'))->first();
+        if ($user != null) {
+            if (Hash::check($request->input('password'), $user->getAttribute('password'))) {
+                return csrf_token();
+            }
+        }
+        return "-1";
     }
 }

@@ -8,6 +8,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/events/map', 'EventController@showMap')->name('event.map');
     Route::get('/events/details/{id}', 'EventController@showDetail')->name('event.details');
     Route::post('/events/setReview', 'EventController@setReview')->name('event.setReview');
+    Route::post('/events/setPhoto/{id}', 'EventController@setPhoto')->name('event.setPhoto');
     Route::get('/users', function () {
         $users = App\User::all();
         return view('pages.users.list', ['users' => $users]);

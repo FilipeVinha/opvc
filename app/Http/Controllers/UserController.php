@@ -25,6 +25,9 @@ class UserController extends Controller
         $profile->postalcode = $request->postalcode;
         $profile->city = $request->city;
         $profile->contact = $request->contact;
+        if ($request->hasFile('photo')) {
+            $profile->photo = $request->photo->store('profile');
+        }
         $profile->save();
 
         return json_encode($profile);

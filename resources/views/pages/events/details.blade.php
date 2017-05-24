@@ -3,11 +3,10 @@
     <link rel="stylesheet" type="text/css" href="/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="/slick/slick-theme.css"/>
     <link href="/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
-    <link href="\vendors\bootstrap-wysiwyg\css\style.css" rel="stylesheet">
-
+    <link href="/vendors\bootstrap-wysiwyg\css\style.css" rel="stylesheet">
+    <link href="/vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
 @endsection
 @section('content')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="right_col" role="main">
         <div class="">
             <div class="clearfix"></div>
@@ -34,7 +33,9 @@
                                             <div class="panel-body">
                                                 <div class="slider-for photos">
                                                     @foreach($event->photos as $photo)
-                                                        <div><img src="/photos/{{$photo->photo}}"></div>
+                                                        <div>
+                                                            <img src="{{asset("storage/".$photo->photo)}}">
+                                                        </div>
                                                     @endforeach
                                                 </div>
                                             </div>
@@ -125,11 +126,18 @@
                                                     </div>
                                                 </div>
                                                 <div id="editor" class="lead "></div>
-                                                <button type="button" class="btn btn-warning"
-                                                        onclick="cancelReview()">@lang('occurrences.events_cleanReview')</button>
-                                                <button type="button" onclick="sendReview()"
-                                                        class="btn btn-success">@lang('occurrences.events_newReview')</button>
-
+                                                <div class="alignleft">
+                                                    <button type="button" class="btn btn-warning"
+                                                            onclick="cancelReview()">@lang('occurrences.events_cleanReview')</button>
+                                                    <button type="button" onclick="sendReview()"
+                                                            class="btn btn-success">@lang('occurrences.events_newReview')</button>
+                                                </div>
+                                                <div class="alignright">
+                                                    <button type="button" class="btn btn-success" data-toggle="modal"
+                                                            data-target=".editProfile"><i
+                                                                class="fa fa-picture-o m-right-xs"></i>Photos
+                                                    </button>
+                                                </div>
                                                 <div class="clearfix"></div>
                                                 <ul class="messages" id="messages">
                                                     @foreach($event->reviews as $review)
@@ -152,8 +160,6 @@
                                         </section>
                                     </div>
                                 </div>
-
-
                             </div>
 
                             <!-- start project-detail sidebar -->
@@ -207,12 +213,42 @@
             </div>
         </div>
     </div>
+    <div class="modal fade editProfile" tabindex="-1" role="dialog"
+         aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                                aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title"
+                        id="myModalLabel">@lang('user.editUser_containerTitle')</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Drag multiple files to the box below for multi upload or click to select files. This is
+                        for demonstration purposes only, the files are not uploaded to any server.</p>
+                    <form action="{{ url('/events/setPhoto/'.$event->id)}}" class="dropzone"
+                          id="my-awesome-dropzone">
+                        {{ csrf_field() }}
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 @endsection
 @section('script')
     <script src="/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
     <script src="/vendors/google-code-prettify/src/prettify.js"></script>
     <script src="/vendors/bootstrap-wysiwyg/src/bootstrap-wysiwyg.js"></script>
-
+    <script src="/vendors/dropzone/dist/min/dropzone.min.js"></script>
     <script src="/osm/OpenLayers.js"></script>
     <script>
         map = new OpenLayers.Map("mapdiv");
@@ -290,6 +326,7 @@
                 dots: true
             });
 
+            $("div#testdrop").dropzone({url: "/events/setPhoto"});
         });
 
     </script>

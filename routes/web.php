@@ -1,6 +1,10 @@
 <?php
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+Route::post('/api/login', 'APIController@appLogin')->name('api.login');
+Route::post('/api/categories', 'APIController@getCategories')->name('api.categories');
+Route::post('/api/subcategories', 'APIController@getSubCategories')->name('api.subCategories');
+Route::post('/api/locals', 'APIController@getLocals')->name('api.locals');
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', 'EventController@showMap')->name('home');
@@ -29,6 +33,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('lang/{lang}', 'LanguageController@switchLang')->name('lang.switch');
 });
 
-Route::group(['middleware' => ['api']], function () {
-    Route::get('/api/login', 'ApiController@appLogin')->name('api.login');
-});
+/*Route::group(['middleware' => ['web']], function () {
+    Route::get('/api/login', 'APIController@appLogin')->name('api.login');
+});*/

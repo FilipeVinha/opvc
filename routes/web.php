@@ -20,6 +20,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/remove/user/{id}', 'WebServiceController@removeUser')->name('user.remove');
     Route::get('lang/{lang}', 'LanguageController@switchLang')->name('lang.switch');
     Route::post('/user/profile', 'UserController@profileUser')->name('user.profile');
+    Route::post('/user/profile/mapcenter', 'UserController@centerMapUser')->name('user.profile.centermap');
     Route::get('/user/profile/{id}', function ($id) {
         $user = \App\User::find($id);
         return view('pages.users.profile', ['user' => $user]);

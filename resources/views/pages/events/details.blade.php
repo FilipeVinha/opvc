@@ -7,6 +7,7 @@
     <link href="/vendors/dropzone/dist/min/dropzone.min.css" rel="stylesheet">
 @endsection
 @section('content')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="right_col" role="main">
         <div class="">
             <div class="clearfix"></div>

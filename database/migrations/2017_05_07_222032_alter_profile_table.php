@@ -15,6 +15,10 @@ class AlterProfileTable extends Migration
     {
         Schema::table('profiles', function ($table) {
             $table->string('photo')->nullable()->change();
+            $table->string('address')->nullable()->change();
+            $table->string('contact')->nullable()->change();
+            $table->string('city')->nullable()->change();
+            $table->string('postalcode')->nullable()->change();
         });
     }
 

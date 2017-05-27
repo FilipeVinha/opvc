@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Password;
 class UserController extends Controller
 {
 
+    public function centerMapUser(Request $request)
+    {
+        $profile = Profile::find($request->user);
+        $profile->lat = $request->lat;
+        $profile->lon = $request->lon;
+        $profile->save();
+
+    }
+
     public function profileUser(profileRequest $request)
     {
         $profile = Profile::find(Auth::user()->id);
@@ -46,6 +55,7 @@ class UserController extends Controller
     public function createtUser(UserRequest $request)
     {
         $user = new User();
+        $profile = new Profile();
         $user->name = $request->name;
         $user->username = $request->name;
         $user->email = $request->email;
@@ -53,6 +63,10 @@ class UserController extends Controller
         $user->auth_level = 1;
         $user->banned = 0;
         $user->save();
+
+        $profile->lat = Config::get('config.lat');
+        $profile->lon = Config::get('config.lon');
+        $profile->user_id = $user->id;
 
         $this->sendResetLinkEmail($request);
         return redirect()->back();

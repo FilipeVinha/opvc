@@ -1,10 +1,10 @@
-
 @extends('layouts.app')
 @section('css')
     <script src="/ol/ol.js"></script>
 @endsection
 @section('content')
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="right_col" role="main">
 
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -29,104 +29,162 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel2">@lang('user.user_saveDefaultPositionTitle')</h4>
+                </div>
+                <div class="modal-body">
+
+                    <p>@lang('user.user_saveDefaultPositionMessage')</p>
+                    <p id="localizacao"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-info"
+                            id="default">@lang('user.user_saveDefaultPositionDefault')</button>
+                    <button type="button" class="btn btn-primary"
+                            id="save">@lang('user.user_saveDefaultPositionSave')</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('script')
+    <script src="/osm/OpenLayers.js"></script>
     <script>
-                @if(count($events)>=1)
-        var vectorSource = new ol.source.Vector({});
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+        });
+
+    </script>
+    <script>
+        var localizacao;
+        var user = {{Auth::User()->id}};
+        var lat = {{Auth::User()->profile->lat}};
+        var lon = {{Auth::User()->profile->lon}};
+
+        map = new OpenLayers.Map("map");
+        map.addLayer(new OpenLayers.Layer.OSM());
+
+        epsg4326 = new OpenLayers.Projection("EPSG:4326"); //WGS 1984 projection
+        projectTo = map.getProjectionObject(); //The map projection (Spherical Mercator)
+
+                {{--var lonLat = new OpenLayers.LonLat({{Config::get('config.lat')}}, {{Config::get('config.long')}}).transform(epsg4326, projectTo);--}}
+        var lonLat = new OpenLayers.LonLat(lon, lat).transform(epsg4326, projectTo);
+
+
+        var zoom = 14;
+        map.setCenter(lonLat, zoom);
+
+        var vectorLayer = new OpenLayers.Layer.Vector("Overlay");
+        //init array
+        // Define markers as "features" of the vector layer:
                 @foreach($events as $event)
-        var iconFeature = new ol.Feature({
-                geometry: new ol.geom.Point(ol.proj.transform([{{$event->lng}}, {{$event->lat}}], 'EPSG:4326',
-                    'EPSG:3857')),
-                name: "{{$event->occurrence->occurrence}}" + "</br><a href='/events/details/{{$event->id}}'>Ver detalhes</a>",
-                population: 4000,
-                rainfall: 500
-            });
+        var feature = new OpenLayers.Feature.Vector(
+            new OpenLayers.Geometry.Point({{$event->lng}}, {{$event->lat}}).transform(epsg4326, projectTo),
+            {description: "{{$event->occurrence->occurrence}}" + "</br><a href='/events/details/{{$event->id}}'>Ver detalhes</a>",},
+            {
+                externalGraphic: '/ol/icons/{{$event->occurrence->category->icon}}.png',
+                graphicHeight: 35,
+                graphicWidth: 35,
+                graphicXOffset: 0,
+                graphicYOffset: -25
+            }
+            );
+        vectorLayer.addFeatures(feature);
+        // end array
+        map.addLayer(vectorLayer);
+        @endforeach
 
-        var iconStyle = new ol.style.Style({
-            image: new ol.style.Icon(/** @type {olx.style.IconOptions} */ ({
-                anchor: [0.5, 0.75],
-                scale: 1,
-                opacity: 0.75,
-                src: '/ol/icons/{{$event->occurrence->category->icon}}.png'
-            }))
-        });
-        iconFeature.setStyle(iconStyle);
-        vectorSource.addFeature(iconFeature);
-
-                @endforeach
-        var vectorLayer = new ol.layer.Vector({
-                source: vectorSource,
-                style: iconStyle
-            });
-                @endif
-        var rasterLayer = new ol.layer.Tile({
-                source: new ol.source.TileJSON({
-                    url: 'http://api.tiles.mapbox.com/v3/mapbox.geography-class.json'
-                })
-            });
-        //                            CENTRAR O MAPA
-        var map = new ol.Map({
-            layers: [rasterLayer],
-            target: document.getElementById('map'),
-            view: new ol.View({
-                center: ol.proj.transform([{{Config::get('config.lat')}}, {{Config::get('config.long')}}], 'EPSG:4326', 'EPSG:3857'),
-                zoom: {{Config::get('config.zoom')}},
-                minZoom: 0
+        //Add a selector control to the vectorLayer with popup functions
+        var controls = {
+            selector: new OpenLayers.Control.SelectFeature(vectorLayer, {
+                onSelect: createPopup,
+                onUnselect: destroyPopup
             }),
+        };
 
-            layers: [
-                new ol.layer.Tile({
-                    source: new ol.source.BingMaps({
-                        imagerySet: 'Road',
-                        key: 'AkGbxXx6tDWf1swIhPJyoAVp06H0s0gDTYslNWWHZ6RoPqMpB9ld5FY1WutX8UoF'
-                    })
-                }),
-                {!! count($events)==0?'':'vectorLayer'!!}
-            ]
-        });
+        function createPopup(feature) {
+            feature.popup = new OpenLayers.Popup.FramedCloud("pop",
+                feature.geometry.getBounds().getCenterLonLat(),
+                null,
+                '<div class="markerContent">' + feature.attributes.description + '</div>',
+                null,
+                true,
+                function () {
+                    controls['selector'].unselectAll();
+                }
+            );
+            //feature.popup.closeOnMove = true;
+            map.addPopup(feature.popup);
+        }
 
-        var element = document.getElementById('popup');
+        function destroyPopup(feature) {
+            feature.popup.destroy();
+            feature.popup = null;
+        }
+        map.events.register("click", map, function (evt) {
 
-        var popup = new ol.Overlay({
-            element: element,
-            positioning: 'bottom-center',
-            stopEvent: false
-        });
-        popup.setOffset([0, -25]);
-        map.addOverlay(popup);
+            var lonlat = map.getLonLatFromViewPortPx(evt.xy);
+            localizacao = new OpenLayers.LonLat(lonlat.lon, lonlat.lat).transform('EPSG:3857', 'EPSG:4326');
 
-        // display popup on click
-        map.on('click', function (evt) {
-            var feature = map.forEachFeatureAtPixel(evt.pixel,
-                function (feature, layer) {
-                    return feature;
-                });
-            if (feature) {
-                var geometry = feature.getGeometry();
-                var coord = geometry.getCoordinates();
-                popup.setPosition(coord);
-                $(element).attr('data-placement', 'top');
-                $(element).attr('data-html', true);
-                $(element).attr('data-content', feature.get('name'));
-                $(element).popover('show');
-            } else {
-                $(element).popover('destroy');
-            }
-        });
+            $.ajax({
+                type: "get",
+                url: ' //nominatim.openstreetmap.org/reverse?format=xml&lat=' + localizacao.lat + '&lon=' + localizacao.lon + '&zoom=18&format=json',
+                success: function (result) {
 
-        // change mouse cursor when over marker
-        $(map.getViewport()).on('mousemove', function (e) {
-            var pixel = map.getEventPixel(e.originalEvent);
-            var hit = map.forEachFeatureAtPixel(pixel, function (feature, layer) {
-                return true;
+                    var local = result.address.road + ', ' + result.address.city_district + ', ' + result.address.county;
+                    $('#localizacao').text(local);
+                    $('.modal').modal('show');
+                }
             });
-            if (hit) {
-                map.getTarget().style.cursor = 'pointer';
-            } else {
-                map.getTarget().style.cursor = '';
-            }
+
+
+        });
+        map.addControl(controls['selector']);
+        controls['selector'].activate();
+
+        $("#save").click(function () {
+            $('.modal').modal('hide');
+
+
+            $.ajax({
+                type: "POST",
+                url: '/user/profile/mapcenter',
+                data: {'lon': localizacao.lon, 'lat': localizacao.lat, 'user': user},
+                success: function (result) {
+                }
+            });
+        });
+        $("#default").click(function () {
+            var lat = {{Config::get('config.lat')}};
+            var lon = {{Config::get('config.long')}};
+
+
+            $('.modal').modal('hide');
+            $.ajax({
+                type: "POST",
+                url: '/user/profile/mapcenter',
+                data: {'lon': lon, 'lat': lat, 'user': user},
+                success: function (result) {
+                    alert(result);
+                }
+            })
+            ;
         });
     </script>
 @endsection

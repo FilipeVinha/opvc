@@ -26,23 +26,25 @@
                                 <div class="profile_img">
                                     <div id="crop-avatar">
                                         <!-- Current avatar -->
-                                        <img class="img-responsive avatar-view" src="/images/user.png" alt="Avatar"
-                                             title="Change the avatar">
+                                        <img class="img-responsive avatar-view"
+                                             src="{{asset("storage/".$user->profile->photo)}}"
+                                             alt="Avatar"
+                                             id="avatar">
                                     </div>
                                 </div>
                                 <h3>{{$user->name}}</h3>
 
                                 <ul class="list-unstyled user_data">
                                     <li><i class="fa fa-map-marker user-profile-icon"></i>
-                                        {!! isset($user->profile->address) ? $user->profile->address: __('user.user_setAddress') !!}
-                                        {!! isset($user->profile->postalcode) ? ', '.$user->profile->postalcode:'' !!}
+                                        <span id="profileAddress">  {!! isset($user->profile->address) ? $user->profile->address: __('user.user_setAddress') !!}</span>
+                                        <span id="profileApostalcode">   {!! isset($user->profile->postalcode) ? ', '.$user->profile->postalcode:'' !!}</span>
                                     </li>
                                     <li><i class="fa fa-map-marker user-profile-icon"></i>
-                                        {!! isset($user->profile->city) ? $user->profile->city: __('user.user_setCity') !!}
+                                        <span id="profileCity"> {!! isset($user->profile->city) ? $user->profile->city: __('user.user_setCity') !!}</span>
                                     </li>
                                     <li>
                                         <i class="fa fa-mobile user-profile-icon"></i>
-                                        {!! isset($user->profile->contact) ? $user->profile->contact: __('user.user_setContact') !!}
+                                        <span id="profileContact"> {!! isset($user->profile->contact) ? $user->profile->contact: __('user.user_setContact') !!}</span>
                                     </li>
                                     <li>
                                         <i class="fa fa-envelope user-profile-icon"></i>
@@ -62,7 +64,7 @@
                                             <div class="modal-content">
                                                 <form id="profile"
                                                       class="form-horizontal form-label-left"
-                                                      id="profile" enctype="multipart/form-data">
+                                                      enctype="multipart/form-data">
                                                     {{ csrf_field() }}
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal"><span
@@ -135,6 +137,17 @@
                                                                        value="{!! isset($user->profile->lang) ? $user->profile->lang: '' !!}">
                                                             </div>
                                                         </div>
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                                                                   for="lang">@lang('user.user_photo')<span
+                                                                        class="required">*</span>
+                                                            </label>
+                                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                <input type="file" id="photo" name="photo"
+                                                                       required="required"
+                                                                       class="form-control col-md-7 col-xs-12">
+                                                            </div>
+                                                        </div>
 
 
                                                     </div>
@@ -175,46 +188,48 @@
     <script src="/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
     <script src="/vendors/moment/min/moment.min.js"></script>
     <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
     <script>
 
         $(document).ready(function () {
-            $('#datatable-button').dataTable({
-//                order: [2, 'DESC']
+            $('#saveprofile').click(function (e) {
+                $("#profile").submit();
             });
-        });
 
-        $(function () {
+
+            $('#profile').on('submit', (function (e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+
+                $.ajax({
+                    type: 'POST',
+                    url: "/user/profile",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        var obj = JSON.parse(data);
+                        $('.modal').modal('hide');
+                        $("#profileAddress").html(obj['address']);
+                        $("#profileCity").html(obj['city']);
+                        $("#profileApostalcode").html(obj['postalcode']);
+                        $("#profileContact").html(obj['contact']);
+
+                        $("#avatar").attr("src", "/storage/" + obj['photo']);
+                    },
+                    error: function (data) {
+                    }
+                });
+            }));
+
             $('input[name="birthday"]').daterangepicker({
                 singleDatePicker: true,
                 showDropdowns: true
             })
-        });
 
-        $(document).ready(function () {
-            $('#saveprofile').click(function (e) {
-
-
-                var data = $("#profile").serialize();
-                $.ajax({
-                    url: '/user/profile',
-                    method: "POST",
-                    dataType: 'json',
-                    data: data,
-//                    processData: false,
-//                    contentType: false,
-                    success: function (result) {
-                        $('.modal').modal('hide');
-
-                    },
-                    error: function (er) {
-                        res = $.parseJSON(er.responseText);
-
-                    }
-                });
-            });
         });
     </script>
-
 
 
 @endsection

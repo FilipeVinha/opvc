@@ -66,5 +66,9 @@ return array(
     'user_postalcode' => 'postal-code',
     'user_city' => 'City',
     'user_birthday' => 'Birthdate',
-    'user_contact' => 'Contact'
+    'user_contact' => 'Contact',
+    'user_saveDefaultPositionTitle' => 'Guardar posição',
+    'user_saveDefaultPositionMessage' => 'Deseja guardar a seguinte localização para centrar o mapa? ',
+    'user_saveDefaultPositionSave' => 'Save ',
+    'user_saveDefaultPositionDefault' => 'Default position ',
 );

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\Category;
+use App\Photo;
 use App\Review;
 use App\User;
 use Illuminate\Http\Request;
@@ -28,6 +29,15 @@ class EventController extends Controller
         return view('pages.events.list', ['events' => $events, 'categories' => $categories]);
     }
 
+    public function setPhoto(Request $request, $id)
+    {
+        $photo = new Photo();
+        if ($request->hasFile('file')) {
+            $photo->photo = $request->file->store('events');
+        }
+        $photo->event_id = $id;
+        $photo->save();
+    }
 
     public function showDetail($id)
     {

@@ -59,7 +59,18 @@ class APIController extends Controller
         $local = $request->input('local');
         $subCat = $request->input('subcat');
         $obs = $request->input('observations');
-        //falta as fotos
+
+        //Ler as photos
+        $nPhotos = $request->input('n_photos');
+        $photos = array();
+        for($i=0;$i<$nPhotos;$i++){
+            $photos[] = $request->input('photo_'.$i);
+        }
+        error_log("Fotos (".$nPhotos."):");
+        for($i=0;$i<$nPhotos;$i++){
+            error_log("\t".$photos[$i]);
+        }
+
 
         $occr = Occurrence::where('occurrence', $subCat)->first();
         $lcl = Local::where('local', $local)->first();
@@ -73,7 +84,7 @@ class APIController extends Controller
         $event->setAttribute("occurrence_id", $occr->getAttribute('id'));
         $event->setAttribute("local_id", $lcl->getAttribute('id'));
         $event->setAttribute("obs", $obs);
-        $event->save();
+        //$event->save();
         //return $event->getAttribute('address');
 
         /*if ($request->hasFile('photo')) {

@@ -8,207 +8,212 @@
 @endsection
 @section('content')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <div class="right_col" role="main">
+    <div class="box box-default" role="main">
         <div class="">
             <div class="clearfix"></div>
 
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="x_panel">
-                        <div class="x_title">
-                            <h2>{{$event->address}}</h2>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="box box-solid">
+                    <div class="box-header with-border">
+                        <h2>{{$event->address}}</h2>
 
-                            <div class="clearfix"></div>
-                        </div>
+                        <div class="clearfix"></div>
+                    </div>
 
-                        <div class="x_content">
-                            <div class="col-md-8 col-sm-8 col-xs-12">
-                                <div class="row">
-                                    <div class="content">
-                                        <section class="panel">
-                                            <div class="x_title">
-                                                <h2>@lang('occurrences.details_containerPhotos')
-                                                </h2>
-                                                <div class="clearfix"></div>
+                    <div class="box-body">
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <div class="row">
+                                <div class="content">
+                                    <section class="box">
+                                        <div class="box-header">
+                                            <h2>@lang('occurrences.details_containerPhotos')
+                                            </h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="box-body">
+                                            <div class="slider-for photos">
+                                                @foreach($event->photos as $photo)
+                                                    <div>
+                                                        <img src="{{asset("storage/".$photo->photo)}}">
+                                                    </div>
+                                                @endforeach
                                             </div>
-                                            <div class="panel-body">
-                                                <div class="slider-for photos">
-                                                    @foreach($event->photos as $photo)
-                                                        <div>
-                                                            <img src="{{asset("storage/".$photo->photo)}}">
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </section>
-                                    </div>
+                                        </div>
+                                    </section>
                                 </div>
+                            </div>
 
-                                <div class="row">
-                                    <div class="content">
-                                        <section class="panel">
-                                            <div class="x_title">
-                                                <h2>@lang('occurrences.details_containerObs')
-                                                </h2>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="panel-body">
-                                                <div id="alerts"></div>
-                                                {{--AQUI--}}
-                                                <div class="btn-toolbar" data-role="editor-toolbar"
-                                                     data-target="#editor">
-                                                    <div class="btn-group">
-                                                        <a class="btn btn-default dropdown-toggle"
-                                                           data-toggle="dropdown" title="Font Size"><i
-                                                                    class="fa fa-text-height"></i>&nbsp;<b
-                                                                    class="caret"></b></a>
-                                                        <ul class="dropdown-menu">
-                                                            <li><a data-edit="fontSize 5" class="fs-Five">Huge</a></li>
-                                                            <li><a data-edit="fontSize 3" class="fs-Three">Normal</a>
-                                                            </li>
-                                                            <li><a data-edit="fontSize 1" class="fs-One">Small</a></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                        <a class="btn btn-default" data-edit="bold"
-                                                           title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
-                                                        <a class="btn btn-default" data-edit="italic"
-                                                           title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
-                                                        <a class="btn btn-default" data-edit="strikethrough"
-                                                           title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
-                                                        <a class="btn btn-default" data-edit="underline"
-                                                           title="Underline (Ctrl/Cmd+U)"><i
-                                                                    class="fa fa-underline"></i></a>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                        <a class="btn btn-default" data-edit="insertunorderedlist"
-                                                           title="Bullet list"><i class="fa fa-list-ul"></i></a>
-                                                        <a class="btn btn-default" data-edit="insertorderedlist"
-                                                           title="Number list"><i class="fa fa-list-ol"></i></a>
-                                                        <a class="btn btn-default" data-edit="outdent"
-                                                           title="Reduce indent (Shift+Tab)"><i
-                                                                    class="fa fa-outdent"></i></a>
-                                                        <a class="btn btn-default" data-edit="indent"
-                                                           title="Indent (Tab)"><i class="fa fa-indent"></i></a>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                        <a class="btn btn-default" data-edit="justifyleft"
-                                                           title="Align Left (Ctrl/Cmd+L)"><i
-                                                                    class="fa fa-align-left"></i></a>
-                                                        <a class="btn btn-default" data-edit="justifycenter"
-                                                           title="Center (Ctrl/Cmd+E)"><i
-                                                                    class="fa fa-align-center"></i></a>
-                                                        <a class="btn btn-default" data-edit="justifyright"
-                                                           title="Align Right (Ctrl/Cmd+R)"><i
-                                                                    class="fa fa-align-right"></i></a>
-                                                        <a class="btn btn-default" data-edit="justifyfull"
-                                                           title="Justify (Ctrl/Cmd+J)"><i
-                                                                    class="fa fa-align-justify"></i></a>
-                                                    </div>
-                                                    <div class="btn-group">
-                                                        <a class="btn btn-default dropdown-toggle"
-                                                           data-toggle="dropdown" title="Hyperlink"><i
-                                                                    class="fa fa-link"></i></a>
-                                                        <div class="dropdown-menu input-append">
-                                                            <input placeholder="URL" type="text"
-                                                                   data-edit="createLink"/>
-                                                            <button class="btn" type="button">Add</button>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="btn-group">
-                                                        <a class="btn btn-default" data-edit="undo"
-                                                           title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
-                                                        <a class="btn btn-default" data-edit="redo"
-                                                           title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
-                                                        <a class="btn btn-default" data-edit="html"
-                                                           title="Clear Formatting"><i
-                                                                    class='glyphicon glyphicon-pencil'></i></a>
-                                                    </div>
-                                                </div>
-                                                <div id="editor" class="lead "></div>
-                                                <div class="alignleft">
-                                                    <button type="button" class="btn btn-warning"
-                                                            onclick="cancelReview()">@lang('occurrences.events_cleanReview')</button>
-                                                    <button type="button" onclick="sendReview()"
-                                                            class="btn btn-success">@lang('occurrences.events_newReview')</button>
-                                                </div>
-                                                <div class="alignright">
-                                                    <button type="button" class="btn btn-success" data-toggle="modal"
-                                                            data-target=".editProfile"><i
-                                                                class="fa fa-picture-o m-right-xs"></i>Photos
-                                                    </button>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                                <ul class="messages" id="messages">
-                                                    @foreach($event->reviews as $review)
-                                                        <li>
-                                                            <img src="/images/user.png" class="avatar" alt="Avatar">
-                                                            <div class="message_date">
-                                                                <h3 class="date text-info">{{date("d", strtotime($review->created_at))}}</h3>
-                                                                <p class="month">{{date("M", strtotime($review->created_at))}}</p>
-                                                            </div>
-                                                            <div class="message_wrapper">
-                                                                <h4 class="heading">{{$review->user->name}}</h4>
-                                                                <blockquote class="message">{!! $review->review !!}
-                                                                </blockquote>
-                                                                <br>
-                                                            </div>
+                            <div class="row">
+                                <div class="content">
+                                    <section class="box">
+                                        <div class="box-header">
+                                            <h2>@lang('occurrences.details_containerObs')
+                                            </h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="box-body">
+                                            <div id="alerts"></div>
+                                            {{--AQUI--}}
+                                            <div class="btn-toolbar" data-role="editor-toolbar"
+                                                 data-target="#editor">
+                                                <div class="btn-group">
+                                                    <a class="btn btn-default dropdown-toggle"
+                                                       data-toggle="dropdown" title="Font Size"><i
+                                                                class="fa fa-text-height"></i>&nbsp;<b
+                                                                class="caret"></b></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a data-edit="fontSize 5" class="fs-Five">Huge</a></li>
+                                                        <li><a data-edit="fontSize 3" class="fs-Three">Normal</a>
                                                         </li>
-                                                    @endforeach
-                                                </ul>
+                                                        <li><a data-edit="fontSize 1" class="fs-One">Small</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <a class="btn btn-default" data-edit="bold"
+                                                       title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
+                                                    <a class="btn btn-default" data-edit="italic"
+                                                       title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+                                                    <a class="btn btn-default" data-edit="strikethrough"
+                                                       title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+                                                    <a class="btn btn-default" data-edit="underline"
+                                                       title="Underline (Ctrl/Cmd+U)"><i
+                                                                class="fa fa-underline"></i></a>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <a class="btn btn-default" data-edit="insertunorderedlist"
+                                                       title="Bullet list"><i class="fa fa-list-ul"></i></a>
+                                                    <a class="btn btn-default" data-edit="insertorderedlist"
+                                                       title="Number list"><i class="fa fa-list-ol"></i></a>
+                                                    <a class="btn btn-default" data-edit="outdent"
+                                                       title="Reduce indent (Shift+Tab)"><i
+                                                                class="fa fa-outdent"></i></a>
+                                                    <a class="btn btn-default" data-edit="indent"
+                                                       title="Indent (Tab)"><i class="fa fa-indent"></i></a>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <a class="btn btn-default" data-edit="justifyleft"
+                                                       title="Align Left (Ctrl/Cmd+L)"><i
+                                                                class="fa fa-align-left"></i></a>
+                                                    <a class="btn btn-default" data-edit="justifycenter"
+                                                       title="Center (Ctrl/Cmd+E)"><i
+                                                                class="fa fa-align-center"></i></a>
+                                                    <a class="btn btn-default" data-edit="justifyright"
+                                                       title="Align Right (Ctrl/Cmd+R)"><i
+                                                                class="fa fa-align-right"></i></a>
+                                                    <a class="btn btn-default" data-edit="justifyfull"
+                                                       title="Justify (Ctrl/Cmd+J)"><i
+                                                                class="fa fa-align-justify"></i></a>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <a class="btn btn-default dropdown-toggle"
+                                                       data-toggle="dropdown" title="Hyperlink"><i
+                                                                class="fa fa-link"></i></a>
+                                                    <div class="dropdown-menu input-append">
+                                                        <input placeholder="URL" type="text"
+                                                               data-edit="createLink"/>
+                                                        <button class="btn" type="button">Add</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="btn-group">
+                                                    <a class="btn btn-default" data-edit="undo"
+                                                       title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
+                                                    <a class="btn btn-default" data-edit="redo"
+                                                       title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+                                                    <a class="btn btn-default" data-edit="html"
+                                                       title="Clear Formatting"><i
+                                                                class='glyphicon glyphicon-pencil'></i></a>
+                                                </div>
                                             </div>
-                                        </section>
-                                    </div>
+                                            <div id="editor" class="lead "></div>
+                                            <div class="alignleft">
+                                                <button type="button" class="btn btn-warning"
+                                                        onclick="cancelReview()">@lang('occurrences.events_cleanReview')</button>
+                                                <button type="button" onclick="sendReview()"
+                                                        class="btn btn-success">@lang('occurrences.events_newReview')</button>
+                                            </div>
+                                            <div class="alignright">
+                                                <button type="button" class="btn btn-success" data-toggle="modal"
+                                                        data-target=".editProfile"><i
+                                                            class="fa fa-picture-o m-right-xs"></i>Photos
+                                                </button>
+                                            </div>
+                                            <div class="clearfix"></div>
+
+                                            <div class="box-footer box-comments" style="margin-top:30px;" id="messages">
+                                                @foreach($event->reviews as $review)
+
+                                                    <div class="box-comment">
+                                                        <!-- User image -->
+                                                        <img class="img-circle img-sm"
+                                                             src="{{asset("storage/".$review->user->profile->photo)}}"
+                                                             alt="User Image">
+                                                        <div class="comment-text">
+                                                          <span class="username">
+                                                           {{$review->user->name}}
+                                                              <span class="text-muted pull-right">{{date("d-m-Y H:i", strtotime($review->created_at))}}</span>
+                                                          </span>
+                                                            {!! $review->review !!}
+                                                        </div>
+                                                    </div>
+
+                                                @endforeach
+                                            </div>
+
+                                        </div>
+
+                                    </section>
                                 </div>
                             </div>
-
-                            <!-- start project-detail sidebar -->
-                            <div class="col-md-4 col-sm-4 col-xs-12">
-
-                                <section class="panel">
-
-                                    <div class="x_title">
-                                        <h2>@lang('occurrences.details_description')
-                                        </h2>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="project_detail">
-
-                                            <p class="title">@lang('occurrences.details_address')</p>
-                                            <p>{{$event->address}}</p>
-                                            <p class="title">@lang('occurrences.details_category')</p>
-                                            <p>{{$event->occurrence->category->category}}</p>
-                                            <p class="title">@lang('occurrences.details_subCategory')</p>
-                                            <p>{{$event->occurrence->occurrence}}</p>
-                                            <p class="title">@lang('occurrences.details_title')</p>
-                                            <p>{{$event->lat}}, {{$event->lng}}</p>
-                                            <p class="title">@lang('occurrences.details_registerBy')</p>
-                                            <p>{{$event->user->name}}</p>
-                                            <p class="title">@lang('occurrences.details_createdAt')</p>
-                                            <p>{{$event->created_at}}</p>
-                                        </div>
-
-                                        <br/>
-                                        <h5 class="title">@lang('occurrences.details_map')</h5>
-                                        <div id="mapdiv" class="mapdiv" style="height: 450px">
-                                            {{--<div id="popup"></div>--}}
-                                        </div>
-                                        <br/>
-
-                                        {{--<div class="text-center mtop20">--}}
-                                        {{--<a href="#" class="btn btn-sm btn-primary">Add files</a>--}}
-                                        {{--<a href="#" class="btn btn-sm btn-warning">Report contact</a>--}}
-                                        {{--</div>--}}
-                                    </div>
-
-                                </section>
-
-                            </div>
-                            <!-- end project-detail sidebar -->
-
                         </div>
+
+                        <!-- start project-detail sidebar -->
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <div class="row">
+                                <div class="content">
+                                    <section class="box">
+
+                                        <div class="box-header">
+                                            <h2>@lang('occurrences.details_description')
+                                            </h2>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="box-body">
+                                            <div class="project_detail">
+
+                                                <p class="title">@lang('occurrences.details_address')</p>
+                                                <p>{{$event->address}}</p>
+                                                <p class="title">@lang('occurrences.details_category')</p>
+                                                <p>{{$event->occurrence->category->category}}</p>
+                                                <p class="title">@lang('occurrences.details_subCategory')</p>
+                                                <p>{{$event->occurrence->occurrence}}</p>
+                                                <p class="title">@lang('occurrences.details_title')</p>
+                                                <p>{{$event->lat}}, {{$event->lng}}</p>
+                                                <p class="title">@lang('occurrences.details_registerBy')</p>
+                                                <p>{{$event->user->name}}</p>
+                                                <p class="title">@lang('occurrences.details_createdAt')</p>
+                                                <p>{{$event->created_at}}</p>
+                                            </div>
+
+                                            <br/>
+                                            <h1 class="title">@lang('occurrences.details_map')</h1>
+                                            <div id="mapdiv" class="mapdiv" style="height: 450px">
+                                                {{--<div id="popup"></div>--}}
+                                            </div>
+                                            <br/>
+
+                                            {{--<div class="text-center mtop20">--}}
+                                            {{--<a href="#" class="btn btn-sm btn-primary">Add files</a>--}}
+                                            {{--<a href="#" class="btn btn-sm btn-warning">Report contact</a>--}}
+                                            {{--</div>--}}
+                                        </div>
+
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end project-detail sidebar -->
+
                     </div>
                 </div>
             </div>

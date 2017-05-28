@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'xbook.ufp@gmail.com', 'name' => 'PrevCrime'],
+    'from' => ['address' => 'no-reply-prevcrime@ufp.edu.pt', 'name' => 'PrevCrime'],
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => env('MAIL_USERNAME', 'no-reply-prevcrime@ufp.edu.pt'),
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => env('MAIL_PASSWORD', '2K#z!*tCFAuYSC@&ey+q3v%$PR^K8'),
 
     /*
     |--------------------------------------------------------------------------

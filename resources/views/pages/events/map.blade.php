@@ -5,16 +5,16 @@
 @section('content')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <div class="right_col" role="main">
-
+    <div class="box box-default" role="main">
+        <div class="clearfix"></div>
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
+            <div class="box box-solid">
+                <div class="box-header with-border">
                     <h2>@lang('occurrences.map_containerTitle')</h2>
 
                     <div class="clearfix"></div>
                 </div>
-                <div class="x_content">
+                <div class="box-body">
 
                     <div class="bs-example" data-example-id="simple-jumbotron">
                         <div>
@@ -63,6 +63,8 @@
     <script src="/osm/OpenLayers.js"></script>
     <script>
         $(document).ready(function () {
+            $("#group-event").addClass("active");
+            $("#group-event-map").addClass("active");
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

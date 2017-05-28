@@ -16,6 +16,7 @@ class AlterProfileCenterTable extends Migration
         Schema::table('profiles', function ($table) {
             $table->string('lat')->nullable();
             $table->string('lon')->nullable();
+            $table->string('lang')->nullable();
         });
     }
 

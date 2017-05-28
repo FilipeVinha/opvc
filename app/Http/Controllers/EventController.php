@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Event;
 use App\Category;
+use App\Occurrence;
 use App\Photo;
 use App\Review;
 use App\User;
@@ -20,13 +21,9 @@ class EventController extends Controller
     public function showEvents()
     {
         $events = Event::all();
-        $datacategories = Category::all('id', 'category');
-        $categories = [];
-        foreach ($datacategories as $row) {
-            $categories[$row['id']] = $row['category'];
-        }
-
-        return view('pages.events.list', ['events' => $events, 'categories' => $categories]);
+        $categories = Category::all();
+        $occurrences = Occurrence::all();
+        return view('pages.events.list', ['events' => $events, 'categories' => $categories, 'occurrences' => $occurrences]);
     }
 
     public function setPhoto(Request $request, $id)
@@ -47,6 +44,7 @@ class EventController extends Controller
 
     public function setReview(Request $request)
     {
+        date_default_timezone_set('UTC');
         $result['status'] = 'fail';
         $review = new Review;
         $review->review = $request->review;
@@ -58,19 +56,18 @@ class EventController extends Controller
             $name = User::find($request->user);
             $month = date("M", strtotime($review->created_at));
             $day = date("d", strtotime($review->created_at));
-            $newReview = '<li>
-                            <img src="/images/user.png" class="avatar" alt="Avatar">
-                            <div class="message_date">
-                                <h3 class="date text-info">' . $day . '</h3>
-                                <p class="month">' . $month . '</p>
-                            </div>
-                            <div class="message_wrapper">
-                                <h4 class="heading\">' . $name->name . '</h4>
-                                <blockquote class="message">
-                                ' . $review->review . '
-                                </blockquote>
-                            </div>
-                        </li>';
+            $newReview = '<div class="box-comment">
+                                                        <img class="img-circle img-sm"
+                                                             src="' . asset("storage/" . $review->user->profile->photo) . '"
+                                                             alt="User Image">
+                                                        <div class="comment-text">
+                                                          <span class="username">
+                                                           ' . $review->user->name . '
+                                                              <span class="text-muted pull-right">' . date("d-m-Y H:i", strtotime($review->created_at)) . '</span>
+                                                          </span>
+                                                            ' . $review->review . '
+                                                        </div>
+                                                    </div>';
 
             $result['reviews'] = $newReview;
         }

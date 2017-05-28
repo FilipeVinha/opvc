@@ -2,10 +2,14 @@
 Auth::routes();
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
+//Route::get('/', function () {
+//    return view('layouts.app');
+//});
+
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/', 'EventController@showMap')->name('home');
+    Route::get('/', 'EventController@showMap')->name('event.map');
     Route::get('/events', 'EventController@showEvents')->name('event.list');
     Route::get('/events/map', 'EventController@showMap')->name('event.map');
     Route::get('/events/details/{id}', 'EventController@showDetail')->name('event.details');
@@ -26,7 +30,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/user/profile/{id}', function ($id) {
         $user = \App\User::find($id);
         return view('pages.users.profile', ['user' => $user]);
-    });
+    })->name('user.profile');
 });
 
 Route::group(['middleware' => ['web']], function () {

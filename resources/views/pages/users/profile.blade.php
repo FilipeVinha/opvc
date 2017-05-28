@@ -5,9 +5,6 @@
     <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 @endsection
 @section('content')
-    {{--@php--}}
-    {{--$user =  Auth::user();--}}
-    {{--@endphp--}}
     <div class="box box-default" role="main">
         <div class="">
 
@@ -24,7 +21,7 @@
                         <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
                             <div class="profile_img">
                                 <div id="crop-avatar">
-                                    <img class="profile-user-img img-responsive img-thumbnail"
+                                    <img class="profile-user-img img-responsive img-thumbnail" id="avatar"
                                          src="{{asset("storage/".$user->profile->photo)}}" alt="User profile picture">
                                 </div>
                             </div>
@@ -64,8 +61,7 @@
                                                 {{ csrf_field() }}
                                                 <div class="modal-header">
                                                     <button type="button" class="close"
-                                                            data-dismiss="modal"><span
-                                                                aria-hidden="true">×</span>
+                                                            data-dismiss="modal">
                                                     </button>
                                                     <h4 class="modal-title"
                                                         id="myModalLabel">@lang('user.editUser_containerTitle')</h4>
@@ -75,8 +71,7 @@
 
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                               for="address">@lang('user.user_address')<span
-                                                                    class="required">*</span>
+                                                               for="address">@lang('user.user_address')
                                                         </label>
                                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                                             <input type="text" id="address" required="required"
@@ -88,8 +83,7 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12"
                                                                for="postalcode">@lang('user.user_postalcode')
-                                                            <span
-                                                                    class="required">*</span>
+
                                                         </label>
                                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                                             <input type="text" id="postalcode" name="postalcode"
@@ -101,8 +95,7 @@
 
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                               for="city">@lang('user.user_city')<span
-                                                                    class="required">*</span>
+                                                               for="city">@lang('user.user_city')
                                                         </label>
                                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                                             <input type="text" id="postalcode" name="city"
@@ -113,8 +106,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                               for="contact">@lang('user.user_contact')<span
-                                                                    class="required">*</span>
+                                                               for="contact">@lang('user.user_contact')
                                                         </label>
                                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                                             <input type="text" id="contact" name="contact"
@@ -125,8 +117,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                               for="lang">@lang('user.user_langt')<span
-                                                                    class="required">*</span>
+                                                               for="lang">@lang('user.user_langt')
                                                         </label>
                                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                                             <select class="form-control  col-md-7 col-xs-12" id="lang"
@@ -142,13 +133,42 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                                               for="lang">@lang('user.user_photo')<span
-                                                                    class="required">*</span>
+                                                               for="lang">@lang('user.user_photo')
                                                         </label>
                                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                                             <input type="file" id="photo" name="photo"
                                                                    required="required"
                                                                    class="form-control col-md-7 col-xs-12">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12 has-error-passowrd "
+                                                               for="lang">@lang('user.createUser_password')
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 has-error-passowrd ">
+                                                            <input type="password"
+                                                                   class="form-control has-feedback-left"
+                                                                   required="required"
+                                                                   placeholder="@lang('user.createUser_password')"
+                                                                   name="password">
+
+
+                                                            <span class="help-block">
+                                                                    <strong id="error-password"></strong>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12 has-error-passowrd "
+                                                               for="lang">@lang('user.createUser_password_confirmation')
+
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 has-error-passowrd  ">
+                                                            <input type="password"
+                                                                   class="form-control has-feedback-left"
+                                                                   required="required"
+                                                                   placeholder="@lang('user.createUser_password_confirmation')"
+                                                                   name="password_confirmation">
+
                                                         </div>
                                                     </div>
 
@@ -212,14 +232,20 @@
                     contentType: false,
                     processData: false,
                     success: function (data) {
-                        var obj = JSON.parse(data);
-                        $('.modal').modal('hide');
-                        $("#profileAddress").html(obj['address']);
-                        $("#profileCity").html(obj['city']);
-                        $("#profileApostalcode").html(obj['postalcode']);
-                        $("#profileContact").html(obj['contact']);
+                        if (data.success) {
+                            $('.modal').modal('hide');
+                            $("#profileAddress").html(data.profile.address);
+                            $("#profileCity").html(data.profile.city);
+                            $("#profileApostalcode").html(data.profile.postalcode);
+                            $("#profileContact").html(data.profile.contact);
 
-                        $("#avatar").attr("src", "/storage/" + obj['photo']);
+                            $("#avatar").attr("src", "/storage/" + data.profile.photo);
+                            $('.has-error-passowrd').removeClass('has-error');
+                            $('#error-password').html('');
+                        } else {
+                            $('.has-error-passowrd').addClass('has-error');
+                            $('#error-password').html(data.error.password[0]);
+                        }
                     },
                     error: function (data) {
                     }

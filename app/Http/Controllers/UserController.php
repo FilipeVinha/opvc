@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use Validator;
 use App\Http\Requests\UserConfirmRequest;
 use App\Notifications\newAccount;
 use App\Profile;
@@ -26,9 +28,24 @@ class UserController extends Controller
 
     }
 
-    public function profileUser(profileRequest $request)
+    public function profileUser(Request $request)
     {
-        $profile = Profile::find(Auth::user()->id);
+
+        if (isset($request->password)) {
+            $validator = Validator::make($request->all(), [
+                'password' => 'confirmed|min:6',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json(['success' => false, 'error' => $validator->errors()->toArray()]);
+            }
+            $user = Auth::user();
+            $user->password = bcrypt($request->password);
+            $user->save();
+        }
+
+
+        $profile = Profile::where('user_id', Auth::user()->id)->first();
         if ($profile == null) {
             $profile = new Profile;
             $profile->user_id = Auth::user()->id;
@@ -43,7 +60,9 @@ class UserController extends Controller
         }
         $profile->save();
 
-        return json_encode($profile);
+//        return json_encode($profile);
+
+        return response()->json(['success' => true, 'profile' => $profile]);
 
     }
 
@@ -73,9 +92,42 @@ class UserController extends Controller
         $profile->save();
 
         $token = csrf_token();
+
+        DB::table('password_resets')->insert(
+            ['email' => $user->email, 'token' => $token]
+        );
         $user->notify(new newAccount($token));
 
         return redirect()->back();
+    }
+
+    public function passowrdCreateUser(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'password' => 'confirmed|min:6',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $password_request = DB::table('password_resets')->where('email', '=', $request->email)->select('token', 'created_at')->orderBy('created_at', 'DESC')->first();
+        if (isset($password_request)) {
+            if ($request->token == $password_request->token) {
+                $now = Carbon::now('Europe/London');
+                $time = Carbon::createFromFormat('Y-m-d H:i:s', $password_request->created_at, 'Europe/London');
+                $length = $time->diffInMinutes($now);
+                if ($length < 25) {
+                    $user = User::where('email', $request->email)->first();
+                    $user->password = bcrypt($request->password);
+                    $user->save();
+                    return redirect('/login');
+                }
+            }
+        }
+
+        $validator->errors()->add('email', 'Token is not valid');
+        return redirect()->back()->withErrors($validator);
     }
 
 

@@ -13,11 +13,8 @@
     <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- Animate.css -->
-    <link href="/vendors/animate.css/animate.min.css" rel="stylesheet">
 
+    <link href=/dist/css/opvc.css rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="/build/css/custom.min.css" rel="stylesheet">
 </head>
@@ -29,7 +26,7 @@
     <div class="login_wrapper">
         <div class="animate form login_form">
             <section class="">
-                <form class="form-horizontal form-label-left input_mask" action="{{ route('password.request') }}"
+                <form class="form-horizontal form-label-left input_mask" action="{{ route('user.password.create') }}"
                       method="post">
                     {{ csrf_field() }}
                     <input type="hidden" name="token" value="{{ $token }}">

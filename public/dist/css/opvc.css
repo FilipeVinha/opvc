@@ -5945,3 +5945,10 @@ table.text-center th {
     font-size: 13pt;
     font-weight: 500;
 }
+
+.login_wrapper {
+    right: 0;
+    margin: 5% auto 0;
+    max-width: 350px;
+    position: relative;
+}

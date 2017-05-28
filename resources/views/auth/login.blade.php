@@ -13,16 +13,13 @@
     <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- Animate.css -->
-    <link href="/vendors/animate.css/animate.min.css" rel="stylesheet">
+    <link href=/dist/css/opvc.css rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="/build/css/custom.min.css" rel="stylesheet">
 </head>
 
-<body class="login">
+<body>
 <div>
 
     <img src="images/opvc-icon.png" align="middle" class="img-responsive center-block">
@@ -41,25 +38,24 @@
                                     </span>
                         @endif
                     </div>
-                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                    <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
 
-                        <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+                        <input id="password" type="password" class="form-control" name="password"
+                               placeholder="Password">
                         @if ($errors->has('password'))
                             <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                         @endif
                     </div>
-                    <div>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fa fa-btn fa-sign-in"></i> Login
-                        </button>
-                    </div>
+                    <button type="submit" class="btn btn-primary form-group">
+                        <i class="fa fa-btn fa-sign-in"></i> Login
+                    </button>
 
                     <div class="clearfix"></div>
 
                     {{--<div class="separator">--}}
-                        {{----}}
+                    {{----}}
                     {{--</div>--}}
                 </form>
             </section>

@@ -34,7 +34,7 @@
                                             <div class="panel-body">
                                                 <div class="slider-for photos">
                                                     @foreach($event->photos as $photo)
-                                                        <div><img src="/photos/{{$photo->photo}}"></div>
+                                                        <div><img src="/public/events/{{$photo->photo}}"></div>
                                                     @endforeach
                                                 </div>
                                             </div>

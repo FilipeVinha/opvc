@@ -9,6 +9,6 @@ class Photo extends Model
     protected $table = 'photos';
 
     protected $fillable = [
-        'id', 'photo','event_id'
+        'id', 'photo', 'event_id'
     ];
 }

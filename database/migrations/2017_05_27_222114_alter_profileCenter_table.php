@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterProfileTable extends Migration
+class AlterProfileCenterTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +14,8 @@ class AlterProfileTable extends Migration
     public function up()
     {
         Schema::table('profiles', function ($table) {
-            $table->string('photo')->nullable()->change();
-            $table->string('address')->nullable()->change();
-            $table->string('contact')->nullable()->change();
-            $table->string('city')->nullable()->change();
-            $table->string('postalcode')->nullable()->change();
+            $table->string('lat')->nullable();
+            $table->string('lon')->nullable();
         });
     }
 

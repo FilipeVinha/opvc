@@ -37,6 +37,10 @@ return array(
 
     'events_columnOptions'       => 'Opções',
 
+    'events_columnRegisteredBy'  => 'Registado Por',
+
+    'events_columnCoord'         => 'Coordinates',
+
     'events_optionWatch'         => 'Detalhes',
 
     'events_optionEdit'          => 'Editar',

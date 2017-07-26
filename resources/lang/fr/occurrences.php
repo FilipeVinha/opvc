@@ -21,6 +21,8 @@ return array(
     'events_columnLocal' => 'Local',
     'events_columnDateTime' => 'Date/Heure',
     'events_columnOptions' => 'Options',
+    'events_columnRegisteredBy'  => 'Resgistered By',
+    'events_columnCoord'         => 'Coordinates',
     'events_optionWatch' => 'Détails',
     'events_optionEdit' => 'Modifier',
     'events_newReview' => 'Nouvelle revue',

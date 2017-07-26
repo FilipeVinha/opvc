@@ -30,6 +30,8 @@
                                 <th>@lang('occurrences.events_columnOccurrence')</th>
                                 <th hidden>@lang('occurrences.events_columnLocal')</th>
                                 <th>@lang('occurrences.events_columnDateTime')</th>
+                                <th>@lang('occurrences.events_columnRegisteredBy')</th>
+                                <th>@lang('occurrences.events_columnCoord')</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -41,6 +43,8 @@
                                     <td>{{$event->occurrence->occurrence}}</td>
                                     <td hidden>{{$event->local->local}}</td>
                                     <td>{{$event->created_at}}</td>
+                                    <td>{{$event->user->name}}</td>
+                                    <td>{{$event->lat}}, {{$event->lon}}</td>
                                 </tr>
                             @endforeach
 

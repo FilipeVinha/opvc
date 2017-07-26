@@ -6,7 +6,11 @@
  * Time: 17:07
  */
 return array(
+
     'stat_containerTitle' => 'Statistics',
+
     'stat_Title'          => 'Statistics',
-    'stat_Graph1'          => 'Number of Events by Category',
+
+    'stat_Graph1'         => 'Number of Events by Category',
+
 );

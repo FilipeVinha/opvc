@@ -14,9 +14,13 @@ return [
     */
 
     'password' => 'Password tem de possuir pelo menos 6 carateres e corresponder com a anterior.',
-    'reset' => 'Foi feito um reset a password!',
-    'sent' => 'Um e-mail foi enviado com o link para criar uma nova password!',
-    'token' => 'O token é inválido.',
-    'user' => "Não foi possível encontrar um utilizador com esse e-mail.",
+
+    'reset'    => 'Foi feito um reset a password!',
+
+    'sent'     => 'Um e-mail foi enviado com o link para criar uma nova password!',
+
+    'token'    => 'O token é inválido.',
+
+    'user'     => "Não foi possível encontrar um utilizador com esse e-mail.",
 
 ];

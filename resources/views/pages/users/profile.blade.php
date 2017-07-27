@@ -22,7 +22,9 @@
                             <div class="profile_img">
                                 <div id="crop-avatar">
                                     <img class="profile-user-img img-responsive img-thumbnail" id="avatar"
-                                         src="{{asset("storage/".$user->profile->photo)}}" alt="User profile picture">
+                                         src=" {{ isset($user->profile->photo) ? asset("storage/"
+                                         .$user->profile->photo) : '/images/user.png'}}"
+                                         alt="User profile picture">
                                 </div>
                             </div>
                             <h3>{{$user->name}}</h3>

@@ -60,7 +60,8 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="{{asset("storage/".Auth::user()->profile->photo)}}" class="user-image"
+                            <img src="{{ isset(Auth::user()->profile->photo) ? asset("storage/".Auth::user()
+                            ->profile->photo) : '/images/user.png'}}" class="user-image"
                                  alt="User Image">
                             <span class="hidden-xs">{{Auth::User()->name}}</span>
                         </a>
@@ -93,7 +94,9 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="{{asset("storage/".Auth::user()->profile->photo)}}" class="img-circle" alt="User Image"
+                    <img src="{{ isset(Auth::user()->profile->photo) ? asset("storage/".Auth::user()->profile->photo)
+                     : '/images/user.png'}}"
+                         class="img-circle" alt="User Image"
                          style="height: 45px; width: 45px;">
                 </div>
                 <div class="pull-left info">
@@ -109,7 +112,7 @@
                 <li class="treeview {!! $prefix == 'event'? 'active': '' !!}">
                     <a href="#">
                         <i class="fa fa-bug"></i>
-                        <span> @lang('occurrences.events')</span>
+                        <span> @lang('occurrences.occurrences')</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -120,7 +123,7 @@
                         <li class="{!! $route == 'list'? 'active': '' !!}"><a
                                     href="/events"> @lang('occurrences.occurrence')</a></li>
                         <li class="{!! $route == 'statistics'? 'active': '' !!}"><a
-                                    href="/statistics"> @lang('occurrences.events_statistics')</a></li>
+                                    href="/statistics"> @lang('occurrences.occurrences_statistics')</a></li>
                     </ul>
                 </li>
 

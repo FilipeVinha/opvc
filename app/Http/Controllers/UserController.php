@@ -2,26 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
-use Validator;
 use App\Http\Requests\UserConfirmRequest;
+use App\Http\Requests\UserRequest;
 use App\Notifications\newAccount;
 use App\Profile;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Http\Requests\profileRequest;
-use App\Http\Requests\UserRequest;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Password;
+use Validator;
 
 class UserController extends Controller
 {
 
     public function centerMapUser(Request $request)
     {
-        $profile = Profile::find($request->user);
+
+        $profile = Profile::where('user_id', Auth::user()->id)->first();
+        if ($profile == null) {
+            $profile = new Profile;
+            $profile->user_id = Auth::user()->id;
+        }
+
         $profile->lat = $request->lat;
         $profile->lon = $request->lon;
         $profile->save();

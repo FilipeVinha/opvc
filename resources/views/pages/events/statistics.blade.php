@@ -26,7 +26,8 @@
                                     @foreach($stats as $stat)
                                         {!! $stat->category.": ".$stat->counter."</br>" !!}
                                     @endforeach
-                                    <canvas id="canvasDoughnut"></canvas>
+                                    <div class="chart" id="sales-chart"
+                                         style="height: 300px; position: relative;"></div>
 
                                 </div>
                                 <!-- /.panel-body -->
@@ -40,9 +41,19 @@
     </div>
 @endsection
 @section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="/vendors/morris.js/morris.min.js"></script>
     <script>
-        $(document).ready(function () {
 
+        var donut = new Morris.Donut({
+            element: 'sales-chart',
+            resize: true,
+            data: [
+                    @foreach($stats as $stat)
+                         {label: "{{$stat->category}}", value: {{$stat->counter}}},
+                    @endforeach
+            ],
+            hideHover: 'auto'
         });
     </script>
 

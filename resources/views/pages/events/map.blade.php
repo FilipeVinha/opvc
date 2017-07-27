@@ -2,6 +2,7 @@
 @section('css')
     <script src="/ol/ol.js"></script>
 @endsection
+
 @section('content')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -74,10 +75,10 @@
 
     </script>
     <script>
-        var localizacao;
+        var localizacao
         var user = {{Auth::User()->id}};
-        var lat = {{Auth::User()->profile->lat}};
-        var lon = {{Auth::User()->profile->lon}};
+        var lat = {{isset(Auth::User()->profile->lat)? Auth::User()->profile->lat :   Config::get('config.lat')}};
+        var lon = {{isset(Auth::User()->profile->lon)? Auth::User()->profile->lon :   Config::get('config.long')}};
 
         map = new OpenLayers.Map("map");
         map.addLayer(new OpenLayers.Layer.OSM());

@@ -11,6 +11,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/events/details/{id}', 'EventController@showDetail')->name('event.details');
     Route::post('/events/setReview', 'EventController@setReview')->name('event.setReview');
     Route::post('/events/setPhoto/{id}', 'EventController@setPhoto')->name('event.setPhoto');
+    Route::get('/statistics', 'StatController@getStats')->name('event.statistics');
     Route::get('/users', function () {
         $users = App\User::all();
         return view('pages.users.list', ['users' => $users]);
@@ -28,6 +29,8 @@ Route::group(['middleware' => 'auth'], function () {
         $user = \App\User::find($id);
         return view('pages.users.profile', ['user' => $user]);
     })->name('user.profile');
+
+
 });
 
 Route::group(['middleware' => ['web']], function () {

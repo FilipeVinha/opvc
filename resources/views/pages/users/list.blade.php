@@ -20,7 +20,7 @@
                     <div class="alert alert-success alert-dismissible fade in hidden" role="alert" id="success"></div>
                     <div class="alert alert-error alert-dismissible fade in hidden" role="alert" id="error"></div>
                     <div class="x_content">
-                        <table id="datatable-buttons"
+                        <table id="usersList"
                                class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0"
                                width="100%">
                             <thead>
@@ -102,6 +102,17 @@
             }
 
         }
+        $(document).ready(function () {
+            $('#usersList').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ],
+                language: {
+                    url: "/vendors/datatables.net-plugins/i18n/{{App::getLocale()}}.json"
+                }
+            });
+        });
     </script>
 
 @endsection

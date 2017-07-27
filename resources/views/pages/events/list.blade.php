@@ -31,7 +31,7 @@
                                 <th hidden>@lang('occurrences.events_columnLocal')</th>
                                 <th>@lang('occurrences.events_columnDateTime')</th>
                                 <th>@lang('occurrences.events_columnRegisteredBy')</th>
-                                <th>@lang('occurrences.events_columnCoord')</th>
+                                <th hidden>@lang('occurrences.events_columnCoord')</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -44,7 +44,7 @@
                                     <td hidden>{{$event->local->local}}</td>
                                     <td>{{$event->created_at}}</td>
                                     <td>{{$event->user->name}}</td>
-                                    <td>{{$event->lat}}, {{$event->lon}}</td>
+                                    <td hidden>{{$event->lat}}, {{$event->lng}}</td>
                                 </tr>
                             @endforeach
 
@@ -77,7 +77,10 @@
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
-                ]
+                ],
+                language: {
+                    url: "/vendors/datatables.net-plugins/i18n/{{App::getLocale()}}.json"
+                }
             });
         });
     </script>

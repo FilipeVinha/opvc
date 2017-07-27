@@ -7,88 +7,88 @@
  */
 return array(
 
-    'events'                     => 'Eventos',
+    'occurrence'                      => 'Ocorrência',
 
-    'occurrence'                 => 'Ocorrências',
+    'occurrences'                     => 'Ocorrências',
 
-    'events_title'               => 'Evento',
+    'occurrences_title'               => 'Ocorrências',
 
-    'events_containerTitle'      => 'Lista de Eventos',
+    'occurrences_containerTitle'      => 'Lista de Ocorrências',
 
-    'events_beforeDropdownLabel' => 'Mostrar',
+    'occurrences_beforeDropdownLabel' => 'Mostrar',
 
-    'events_afterDropdownLabel'  => 'Entradas.',
+    'occurrences_afterDropdownLabel'  => 'Entradas.',
 
-    'events_columnId'            => 'ID',
+    'occurrences_columnId'            => 'ID',
 
-    'events_columnAddress'       => 'Endereço',
+    'occurrences_columnAddress'       => 'Endereço',
 
-    'events_columnLatitude'      => 'Latitude',
+    'occurrences_columnLatitude'      => 'Latitude',
 
-    'events_columnLongitude'     => 'Longitude',
+    'occurrences_columnLongitude'     => 'Longitude',
 
-    'events_columnCategory'      => 'Categoria',
+    'occurrences_columnCategory'      => 'Categoria',
 
-    'events_columnOccurrence'    => 'Ocorrência',
+    'occurrences_columnOccurrence'    => 'Ocorrência',
 
-    'events_columnLocal'         => 'Local',
+    'occurrences_columnLocal'         => 'Local',
 
-    'events_columnDateTime'      => 'Data/Hora',
+    'occurrences_columnDateTime'      => 'Data/Hora',
 
-    'events_columnOptions'       => 'Opções',
+    'occurrences_columnOptions'       => 'Opções',
 
-    'events_columnRegisteredBy'  => 'Registado Por',
+    'occurrences_columnRegisteredBy'  => 'Registado Por',
 
-    'events_columnCoord'         => 'Coordinates',
+    'occurrences_columnCoord'         => 'Coordenadas',
 
-    'events_optionWatch'         => 'Detalhes',
+    'occurrences_optionWatch'         => 'Detalhes',
 
-    'events_optionEdit'          => 'Editar',
+    'occurrences_optionEdit'          => 'Editar',
 
-    'events_newReview'           => 'Adicionar observação',
+    'occurrences_newReview'           => 'Adicionar observação',
 
-    'events_beginDate'           => 'Data Início',
+    'occurrences_beginDate'           => 'Data Início',
 
-    'events_endDate'             => 'Data Fim',
+    'occurrences_endDate'             => 'Data Fim',
 
-    'events_submitBtn'           => 'Submeter',
+    'occurrences_submitBtn'           => 'Submeter',
 
-    'events_statistics'          => 'Estatísticas',
+    'occurrences_statistics'          => 'Estatísticas',
 
-    'events_categories'          => 'Categorias',
+    'occurrences_categories'          => 'Categorias',
 
-    'map_containerTitle'         => 'Mapa',
+    'map_containerTitle'              => 'Mapa',
 
-    'map_title'                  => 'Mapa',
+    'map_title'                       => 'Mapa',
 
-    'details_title'              => 'Detalhes',
+    'details_title'                   => 'Detalhes',
 
-    'details_containerTitle'     => 'Detalhes',
+    'details_containerTitle'          => 'Detalhes',
 
-    'details_address'            => 'Endereço',
+    'details_address'                 => 'Endereço',
 
-    'details_coordinates'        => 'Coordenadas (Lat., Long.)',
+    'details_coordinates'             => 'Coordenadas (Lat., Long.)',
 
-    'details_category'           => 'Categoria',
+    'details_category'                => 'Categoria',
 
-    'details_subCategory'        => 'Sub-Categoria',
+    'details_subCategory'             => 'Sub-Categoria',
 
-    'details_registerBy'         => 'Registado por',
+    'details_registerBy'              => 'Registado por',
 
-    'details_createdAt'          => 'Criado em',
+    'details_createdAt'               => 'Criado em',
 
-    'details_containerObs'       => 'Observações',
+    'details_containerObs'            => 'Observações',
 
-    'details_submitBtn'          => 'Submeter',
+    'details_submitBtn'               => 'Submeter',
 
-    'details_containerPhotos'    => 'Fotos',
+    'details_containerPhotos'         => 'Fotos',
 
-    'details_map'                => 'Mapa',
+    'details_map'                     => 'Mapa',
 
-    'details_graphicOfStatistic' => 'Gráfico da Estatística',
+    'details_graphicOfStatistic'      => 'Gráfico da Estatística',
 
-    'details_description'        => 'Descrição',
+    'details_description'             => 'Descrição',
 
-    'events_cleanReview'         => 'Cancelar',
+    'occurrences_cleanReview'         => 'Cancelar',
 
 );

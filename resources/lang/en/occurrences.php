@@ -7,88 +7,88 @@
  */
 return array(
 
-    'events'                     => 'Events',
+    'occurrence'                      => 'Occurrence',
 
-    'occurrence'                 => 'Occurrences',
+    'occurrences'                     => 'Occurrences',
 
-    'events_title'               => 'Event',
+    'occurrences_title'               => 'Occurrence',
 
-    'events_containerTitle'      => 'Events list',
+    'occurrences_containerTitle'      => 'Occurrences list',
 
-    'events_beforeDropdownLabel' => 'Show',
+    'occurrences_beforeDropdownLabel' => 'Show',
 
-    'events_afterDropdownLabel'  => 'entries.',
+    'occurrences_afterDropdownLabel'  => 'entries.',
 
-    'events_columnId'            => 'ID',
+    'occurrences_columnId'            => 'ID',
 
-    'events_columnAddress'       => 'Address',
+    'occurrences_columnAddress'       => 'Address',
 
-    'events_columnLatitude'      => 'Latitude',
+    'occurrences_columnLatitude'      => 'Latitude',
 
-    'events_columnLongitude'     => 'Longitude',
+    'occurrences_columnLongitude'     => 'Longitude',
 
-    'events_columnCategory'      => 'Category',
+    'occurrences_columnCategory'      => 'Category',
 
-    'events_columnOccurrence'    => 'Occurrence',
+    'occurrences_columnOccurrence'    => 'Occurrence',
 
-    'events_columnLocal'         => 'Local',
+    'occurrences_columnLocal'         => 'Local',
 
-    'events_columnDateTime'      => 'Date/Time',
+    'occurrences_columnDateTime'      => 'Date/Time',
 
-    'events_columnOptions'       => 'Options',
+    'occurrences_columnOptions'       => 'Options',
 
-    'events_columnRegisteredBy'  => 'Resgistered By',
+    'occurrences_columnRegisteredBy'  => 'Resgistered By',
 
-    'events_columnCoord'         => 'Coordinates',
+    'occurrences_columnCoord'         => 'Coordinates',
 
-    'events_optionWatch'         => 'Details',
+    'occurrences_optionWatch'         => 'Details',
 
-    'events_optionEdit'          => 'Edit',
+    'occurrences_optionEdit'          => 'Edit',
 
-    'events_newReview'           => 'New Review',
+    'occurrences_newReview'           => 'New Review',
 
-    'events_beginDate'           => 'Begin Date',
+    'occurrences_beginDate'           => 'Begin Date',
 
-    'events_endDate'             => 'End Date',
+    'occurrences_endDate'             => 'End Date',
 
-    'events_submitBtn'           => 'Submit',
+    'occurrences_submitBtn'           => 'Submit',
 
-    'events_statistics'          => 'Statistics',
+    'occurrences_statistics'          => 'Statistics',
 
-    'events_categories'          => 'Categories',
+    'occurrences_categories'          => 'Categories',
 
-    'map_containerTitle'         => 'Map',
+    'map_containerTitle'              => 'Map',
 
-    'map_title'                  => 'Map',
+    'map_title'                       => 'Map',
 
-    'details_title'              => 'Details',
+    'details_title'                   => 'Details',
 
-    'details_containerTitle'     => 'Details',
+    'details_containerTitle'          => 'Details',
 
-    'details_address'            => 'Address',
+    'details_address'                 => 'Address',
 
-    'details_coordinates'        => 'Coordinates (Lat., Long.)',
+    'details_coordinates'             => 'Coordinates (Lat., Long.)',
 
-    'details_category'           => 'Category',
+    'details_category'                => 'Category',
 
-    'details_subCategory'        => 'Sub Category',
+    'details_subCategory'             => 'Sub Category',
 
-    'details_registerBy'         => 'Registered By',
+    'details_registerBy'              => 'Registered By',
 
-    'details_createdAt'          => 'Created At',
+    'details_createdAt'               => 'Created At',
 
-    'details_containerObs'       => 'Observations',
+    'details_containerObs'            => 'Observations',
 
-    'details_submitBtn'          => 'Submit',
+    'details_submitBtn'               => 'Submit',
 
-    'details_containerPhotos'    => 'Photos',
+    'details_containerPhotos'         => 'Photos',
 
-    'details_map'                => 'Map',
+    'details_map'                     => 'Map',
 
-    'details_graphicOfStatistic' => 'Graphic of a Statistic',
+    'details_graphicOfStatistic'      => 'Graphic of a Statistic',
 
-    'details_description'        => 'Description',
+    'details_description'             => 'Description',
 
-    'events_cleanReview'         => 'Cancel',
+    'occurrences_cleanReview'         => 'Cancel',
 
 );

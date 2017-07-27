@@ -128,9 +128,9 @@
                                             <div id="editor" class="lead "></div>
                                             <div class="alignleft">
                                                 <button type="button" class="btn btn-warning"
-                                                        onclick="cancelReview()">@lang('occurrences.events_cleanReview')</button>
+                                                        onclick="cancelReview()">@lang('occurrences.occurrences_cleanReview')</button>
                                                 <button type="button" onclick="sendReview()"
-                                                        class="btn btn-success">@lang('occurrences.events_newReview')</button>
+                                                        class="btn btn-success">@lang('occurrences.occurrences_newReview')</button>
                                             </div>
                                             <div class="alignright">
                                                 <button type="button" class="btn btn-success" data-toggle="modal"

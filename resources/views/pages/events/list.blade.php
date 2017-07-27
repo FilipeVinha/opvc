@@ -14,7 +14,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2> @lang('occurrences.events_containerTitle')
+                        <h2> @lang('occurrences.occurrences_containerTitle')
                         </h2>
                         <div class="clearfix"></div>
                     </div>
@@ -25,13 +25,13 @@
                             <thead>
                             <tr>
 
-                                <th>@lang('occurrences.events_columnAddress')</th>
-                                <th>@lang('occurrences.events_columnCategory')</th>
-                                <th>@lang('occurrences.events_columnOccurrence')</th>
-                                <th hidden>@lang('occurrences.events_columnLocal')</th>
-                                <th>@lang('occurrences.events_columnDateTime')</th>
-                                <th>@lang('occurrences.events_columnRegisteredBy')</th>
-                                <th hidden>@lang('occurrences.events_columnCoord')</th>
+                                <th>@lang('occurrences.occurrences_columnAddress')</th>
+                                <th>@lang('occurrences.occurrences_columnCategory')</th>
+                                <th>@lang('occurrences.occurrences_columnOccurrence')</th>
+                                <th hidden>@lang('occurrences.occurrences_columnLocal')</th>
+                                <th>@lang('occurrences.occurrences_columnDateTime')</th>
+                                <th>@lang('occurrences.occurrences_columnRegisteredBy')</th>
+                                <th hidden>@lang('occurrences.occurrences_columnCoord')</th>
                             </tr>
                             </thead>
                             <tbody>

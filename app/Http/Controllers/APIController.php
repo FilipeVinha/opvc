@@ -11,7 +11,7 @@ use App\Photo;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use SebastianBergmann\Environment\Console;
+use Illuminate\Support\Facades\Storage;
 
 class APIController extends Controller
 {
@@ -25,7 +25,7 @@ class APIController extends Controller
                 $api->setAttribute('token', $token);
                 $api->setAttribute('user_id', $user->getAttribute('id'));
                 $api->save();
-                $response = csrf_token()." ".$user->getAttribute('id');
+                $response = csrf_token() . " " . $user->getAttribute('id');
                 return $response;
             }
         }
@@ -60,17 +60,6 @@ class APIController extends Controller
         $subCat = $request->input('subcat');
         $obs = $request->input('observations');
 
-        //Ler as photos
-        $nPhotos = $request->input('n_photos');
-        $photos = array();
-        for($i=0;$i<$nPhotos;$i++){
-            $photos[] = $request->input('photo_'.$i);
-        }
-        error_log("Fotos (".$nPhotos."):");
-        for($i=0;$i<$nPhotos;$i++){
-            error_log("\t".$photos[$i]);
-        }
-
 
         $occr = Occurrence::where('occurrence', $subCat)->first();
         $lcl = Local::where('local', $local)->first();
@@ -84,15 +73,32 @@ class APIController extends Controller
         $event->setAttribute("occurrence_id", $occr->getAttribute('id'));
         $event->setAttribute("local_id", $lcl->getAttribute('id'));
         $event->setAttribute("obs", $obs);
-        //$event->save();
-        //return $event->getAttribute('address');
+        $event->save();
 
-        /*if ($request->hasFile('photo')) {
+
+        //Ler as photos
+        $nPhotos = $request->input('n_photos');
+        $photos = array();
+        for ($i = 0; $i < $nPhotos; $i++) {
+            $photos[] = $request->input('photo_' . $i);
+        }
+
+        for ($i = 0; $i < $nPhotos; $i++) {
+
+            $new_image = base64_decode($photos[$i]);
+            $date = microtime();
             $photo = new Photo();
-            $photo->event_id = $event->id;
-            $photo->photo = $request->photo->store('photos');
+            $image_name = $date . '.png';
+            $path = public_path() . "/storage/events/" . $image_name;
+            file_put_contents($path, $new_image);
+            $photo->setAttribute('event_id', $event->id);
+            $photo->setAttribute('photo', $image_name);
             $photo->save();
-        }*/
+
+            unset($path, $image_name,$date);
+        }
+
+
         return "1";
 
     }

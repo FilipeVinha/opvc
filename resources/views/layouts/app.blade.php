@@ -42,7 +42,7 @@
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b class="icon-ufp"></b></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b class="icon-ufp"></b>Prevcrime</span>
+            <span class="logo-lg"><b class="icon-ufp"></b>@lang('master.master_appName')</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -67,7 +67,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="/user/profile/{{Auth::user()->id}}"> @lang('user.user_profile')</a></li>
-                            <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                            <li><a href="/logout"><i class="fa fa-sign-out pull-right"></i>@lang('master.master_logout')</a></li>
                         </ul>
                     </li>
                     <li class="">
@@ -157,7 +157,7 @@
     <!-- /.content-wrapper -->
     <footer class="main-footer no-print" style="
     text-align: right;">
-        OPVC - Observatório Permanente Violência & Crime
+        @lang('master.master_departmentInitials') - @lang('master.master_departmentName')
     </footer>
 
 </div>

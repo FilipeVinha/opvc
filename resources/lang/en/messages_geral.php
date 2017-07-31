@@ -9,4 +9,6 @@ return array(
 
     'loginSuccess' => 'You are logged in!',
 
+    'seeDetails' => 'See details'
+
 );

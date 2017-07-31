@@ -112,7 +112,7 @@
                                                     <div class="dropdown-menu input-append">
                                                         <input placeholder="URL" type="text"
                                                                data-edit="createLink"/>
-                                                        <button class="btn" type="button">Add</button>
+                                                        <button class="btn" type="button">@lang('occurrences.details_addBtn')</button>
                                                     </div>
                                                 </div>
 
@@ -136,7 +136,7 @@
                                             <div class="alignright">
                                                 <button type="button" class="btn btn-success" data-toggle="modal"
                                                         data-target=".editProfile"><i
-                                                            class="fa fa-picture-o m-right-xs"></i>Photos
+                                                            class="fa fa-picture-o m-right-xs"></i>@lang('occurrences.details_containerPhotos')
                                                 </button>
                                             </div>
                                             <div class="clearfix"></div>

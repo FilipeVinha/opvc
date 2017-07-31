@@ -46,6 +46,8 @@ return array(
 
     'createUser_submitBtn'             => 'Submit',
 
+    'createUser_cancelBtn'             => 'Cancel',
+
     'createUser_resetBtn'              => 'Reset',
 
     'createUser_gender'                => 'Gender',
@@ -135,5 +137,9 @@ return array(
     'user_saveDefaultPositionSave'     => 'Save ',
 
     'user_saveDefaultPositionDefault'  => 'Default position ',
+
+    'user_closeBtn'                    => 'Close',
+
+    'user_closeSaveChangesBtn'         => 'Save changes',
 
 );

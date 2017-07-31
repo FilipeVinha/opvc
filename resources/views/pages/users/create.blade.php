@@ -58,9 +58,9 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <button type="button" class="btn btn-primary">Cancel</button>
-                                    <button class="btn btn-primary" type="reset">Reset</button>
-                                    <button type="submit" class="btn btn-success" id="send">Submit</button>
+                                    <button type="button" class="btn btn-primary">@lang('user.createUser_cancelBtn')</button>
+                                    <button class="btn btn-primary" type="reset">@lang('user.createUser_resetBtn')</button>
+                                    <button type="submit" class="btn btn-success" id="send">@lang('user.createUser_submitBtn')</button>
                                 </div>
                             </div>
 

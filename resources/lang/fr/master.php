@@ -10,5 +10,7 @@ return [
     'master_menuCreateUser' => 'Créer un utilisateur',
     'master_menuStatistics' => 'Statistiques',
     'master_dropuserProfile' => 'Mon profil',
-    'master_logout' => 'Déconnexion'
+    'master_logout' => 'Déconnexion',
+    'master_departmentInitials' => 'OPVC',
+    'master_departmentName'  => 'Observatório Permanente Violência & Crime'
 ];

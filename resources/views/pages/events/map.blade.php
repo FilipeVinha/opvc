@@ -47,7 +47,7 @@
                     <p id="localizacao"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">@lang('user.user_closeBtn')</button>
                     <button type="button" class="btn btn-info"
                             id="default">@lang('user.user_saveDefaultPositionDefault')</button>
                     <button type="button" class="btn btn-primary"
@@ -99,7 +99,7 @@
                 @foreach($events as $event)
         var feature = new OpenLayers.Feature.Vector(
             new OpenLayers.Geometry.Point({{$event->lng}}, {{$event->lat}}).transform(epsg4326, projectTo),
-            {description: "{{$event->occurrence->occurrence}}" + "</br><a href='/events/details/{{$event->id}}'>Ver detalhes</a>",},
+            {description: "{{$event->occurrence->occurrence}}" + "</br><a href='/events/details/{{$event->id}}'>@lang('messages_geral.seeDetails')</a>",},
             {
                 externalGraphic: '/ol/icons/{{$event->occurrence->category->icon}}.png',
                 graphicHeight: 35,

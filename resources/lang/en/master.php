@@ -20,6 +20,10 @@ return [
 
     'master_dropuserProfile' => 'My Profile',
 
-    'master_logout'          => 'Logout'
+    'master_logout'          => 'Logout',
+
+    'master_departmentInitials' => 'OPVC',
+
+    'master_departmentName'  => 'Observatório Permanente Violência & Crime'
 
 ];

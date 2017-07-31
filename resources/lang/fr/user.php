@@ -26,6 +26,7 @@ return array(
     'createUser_banned' => 'Banni?',
     'createUser_password' => 'Password',
     'createUser_submitBtn' => 'Soumettre',
+    'createUser_cancelBtn' => 'Cancel',
     'createUser_resetBtn' => 'Réinitialiser',
     'createUser_gender' => 'Genre',
     'users_title' => 'Utilisateurs',
@@ -72,4 +73,6 @@ return array(
 
     'user_saveDefaultPositionSave' => 'Save ',
     'user_saveDefaultPositionDefault' => 'Default position ',
+    'user_closeBtn' => 'Close',
+    'user_closeSaveChangesBtn' => 'Save changes',
 );

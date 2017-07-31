@@ -49,8 +49,7 @@
                             <div class="x_content">
                                 @if(Auth::user()->id == $user->id)
                                     <button type="button" class="btn btn-success" data-toggle="modal"
-                                            data-target=".editProfile"><i class="fa fa-edit m-right-xs"></i>Edit
-                                        Profile
+                                            data-target=".editProfile"><i class="fa fa-edit m-right-xs"></i>@lang('user.editUser_containerTitle')
                                     </button>
                                 @endif
                                 <div class="modal fade editProfile" tabindex="-1" role="dialog"
@@ -179,11 +178,11 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default"
                                                             data-dismiss="modal">
-                                                        Close
+                                                        @lang('user.user_closeBtn')
                                                     </button>
                                                     <button id="saveprofile" type="button"
                                                             class="btn btn-primary">
-                                                        Save changes
+                                                        @lang('user.user_closeSaveChangesBtn')
                                                     </button>
                                                 </div>
                                             </form>

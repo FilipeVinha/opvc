@@ -27,7 +27,7 @@
                                 <th>
                                     <select id="categories" class="form-control" required=""
                                             style="min-width: 100% !important;">
-                                        <option value=" ">Select a @lang('occurrences.occurrences_columnCategory')</option>
+                                        <option value=" ">@lang('occurrences.occurrences_selecta') @lang('occurrences.occurrences_columnCategory')</option>
                                         @foreach($categories as $category)
                                             <option value="{{$category->category}}">{{$category->category}}</option>
                                         @endforeach
@@ -37,7 +37,7 @@
                                 <th>
                                     <select id="occurrences" class="form-control" required=""
                                             style="min-width: 100% !important;">
-                                        <option value=" ">Select a @lang('occurrences.occurrences_columnOccurrence')</option>
+                                        <option value=" ">@lang('occurrences.occurrences_selecta') @lang('occurrences.occurrences_columnOccurrence')</option>
                                         @foreach($occurrences as $occurrence)
                                             <option value="{{$occurrence->occurrence}}">{{$occurrence->occurrence}}</option>
                                         @endforeach

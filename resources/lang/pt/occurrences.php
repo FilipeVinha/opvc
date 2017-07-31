@@ -89,6 +89,10 @@ return array(
 
     'details_description'             => 'Descrição',
 
+    'details_addBtn'                  => 'Adicionar',
+
     'occurrences_cleanReview'         => 'Cancelar',
+
+    'occurrences_selecta'             => 'Selecione uma',
 
 );

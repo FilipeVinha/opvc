@@ -46,6 +46,8 @@ return array(
 
     'createUser_submitBtn'             => 'Submeter',
 
+    'createUser_cancelBtn'             => 'Cancelar',
+
     'createUser_resetBtn'              => 'Reset',
 
     'createUser_gender'                => 'Género',
@@ -135,5 +137,9 @@ return array(
     'user_saveDefaultPositionSave'     => 'Guardar ',
 
     'user_saveDefaultPositionDefault'  => 'Posição por defeito ',
+
+    'user_closeBtn'                    => 'Fechar',
+
+    'user_closeSaveChangesBtn'         => 'Gravar alterações',
 
 );

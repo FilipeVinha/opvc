@@ -47,5 +47,8 @@ return array(
     'details_map' => 'Carte',
     'details_graphicOfStatistic' => 'Graphique d\'une statistique',
     'details_description' => 'Description',
+    'details_addBtn' => 'Add',
     'occurrences_cleanReview' => 'Cancel',
+    'occurrences_selecta' => 'Select a',
+
 );
